@@ -1,0 +1,35 @@
+Write a program in C++ to swap two numbers with and without using a third variable.
+
+
+
+Solution:
+
+#include <iostream>
+using namespace std;
+int main() {
+    int a, b,t;
+    cout << "Enter a: ";
+    cin >> a;
+    cout << "Enter b: ";
+    cin >> b;
+    cout << "\n Original value: \n";
+    cout << "a = " << a << " b = " << b << endl;
+    cout << "\nSwap Using 3rd var:\n";
+    t = a;
+    a = b;
+    b = t;
+    cout << "a = " << a << " b = " << b << endl;
+    cout << "\nSwap without Using 3rd var:\n";
+    a = a + b;
+    b = a - b;
+    a = a - b;
+    cout << "a = " << a << " b = " << b << endl;
+    return 0;
+}
+
+
+
+
+
+
+
