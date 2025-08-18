@@ -32,4 +32,51 @@ int main() {
 
 
 
+Design a menu driven program with following choices:
+1. Continue and Break example 
+2. for syntax
+3. while syntax
+4. do..while syntax
+5. goto syntax
+6. Finished study (Exit)
+Based on the choice by the user: 
+Perform the operation
+If the choice is 6, only then we exit, else the menu runs infinitely.
+
+
+
+
+While:
+init
+While(cond){
+Statements;
+Inc/dec
+}
+
+
+For:
+For(init;cond;inc/dec){ //range of value
+}
+
+
+
+Do..while:
+Init;
+Do{
+Statements;
+Inc/dec;
+}while(cond); //at least this loop will run for 1 iteration
+
+
+
+Go to :
+Init;
+Label: 
+Statements
+Inc/dec
+If (cond) 
+Goto label
+
+
+
 
