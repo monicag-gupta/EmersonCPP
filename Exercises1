@@ -135,3 +135,47 @@ int main() {
 
 
 
+
+
+
+
+Print all the elements through vararg functionality used for 5 arguments once and 7 arguments next:
+Print(7 elements) -> prints each element and cumulative sum
+Print(5 elements) -> prints each element and cumulative sum
+
+
+
+//#include "stdafx.h"
+#include <iostream>
+#include <stdarg.h>
+using namespace std;
+void print(int num, ...) {
+    va_list valist;
+
+    int i;
+    int val;
+    int sum = 0;
+    /* initialize valist for num number of arguments */
+    va_start(valist, num);
+    cout << "\nList starts:\n";
+    /* access all the arguments assigned to valist */
+    for (i = 0; i < num; i++) {
+        val = va_arg(valist, int);
+        sum += val;
+        cout << val << "\t" << "Cumulative Sum : " << sum << "\n";
+    }
+    cout << "\nList ends\n";
+    /* clean memory reserved for valist */
+    va_end(valist);
+
+}
+int main() {
+    print(5, 2, 3, 4, 5, 9);
+    print(7, 5, 10, 15, 9, 2, 7, 6);
+}
+
+
+
+
+
+
