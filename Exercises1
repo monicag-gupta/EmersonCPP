@@ -179,6 +179,10 @@ int main() {
 
 
 
+WAP to generate 5 random numbers between 5-10.
+Rand() % (higher_limit - lower_limit + 1) + lower_limit
+
+
 
 
 
