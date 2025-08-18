@@ -80,3 +80,58 @@ Goto label
 
 
 
+
+#include <iostream>
+#define NEWLINE '\n'
+using namespace std;
+
+int main() {
+	cout << "\nMenu Driven Program\n";
+	int ch;
+	for (;;) {
+		cout << "\n\n1. Continue and Break example\n2. for syntax\n\
+3. while syntax\n4. do..while syntax\n5. goto syntax\n6. Finished study(Exit)\nEnter choice: ";
+		cin >> ch;
+		if (ch == 1) {
+			cout << "\n\nContinue and Break example\n\n\
+				#include <iostream>\n\
+				using namespace std;\n\
+			int main() {\n\
+				// Local variable declaration:\n\
+				int a = 10;\n\
+				// do loop execution\n\
+				do {\n\
+					if (a == 15) {\n\
+						// skip the iteration.\n\
+						a = a + 1;\n\
+						continue;\n\
+					}\n\
+					cout << \"value of a: \" << a << endl;\n\
+					a = a + 1;\n\
+				} while (a < 20);\n\
+				return 0;\n\
+			}\n	";
+		}
+		else if (ch == 2) {
+			cout << "\n\nfor syntax\nfor(initialization; condition; incr/decr){\n//code to be executed  \n} \n";
+		}
+		else if (ch == 3) {
+			cout << "\n\nWhile Syntax\nInitialization;\nwhile (condition) {\n//code to be executed\nIncr / decr;\n}\n ";
+		}
+		else if (ch == 4) {
+			cout << "\n\ndo..while Syntax\nInitialization;\ndo{ \n//code to be executed\nIncr / decr;\n}while(condition); \n";
+		}
+		else if (ch == 5) {
+			cout << "\n\nGoto Syntax\nInitialization;\nLabel:\n//code to be executed\nIncr / decr;\nif(condition)\ngoto Label; \n";
+		}
+		else if (ch == 6)
+			break;
+		else
+			cout << "\nIncorrect choice \n Try Again\n";
+
+	}
+	return 0;
+}
+
+
+
