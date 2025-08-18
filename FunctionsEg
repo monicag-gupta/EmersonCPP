@@ -204,3 +204,28 @@ int main () {
 }
 
 
+
+
+
+
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int main () {
+   int i, j;
+
+   /* generate 10  random numbers. */
+   for( i = 0; i < 10; i++ ) {
+      // generate actual random number
+      j = rand();
+      cout <<" Random Number : " << j << endl;
+   }
+
+   return 0;
+}
+//output is any 10 random numbers…
+
+
+
+
+
