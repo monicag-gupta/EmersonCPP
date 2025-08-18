@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+ int arr[5]={10, 0, 20, 0, 30}; //creating and initializing array
+        //traversing array
+       for (int i: arr) //for (int I : range_ofvalues)
+        {
+            cout<<i<<"\n";
+        }
+        /*for(j=0;j<5;j++)
+             {
+                  i=arr[j];
+                  cout<<i<<"\n";
+          }*/
+}
+
