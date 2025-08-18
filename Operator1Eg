@@ -52,3 +52,136 @@ int main() {
     return 0;
 }
 
+
+
+
+
+
+#include <iostream>
+using namespace std;
+int main() {
+	int  var;
+	int* ptr;
+	int  val;
+	var = 3000;	
+	ptr = &var; // take the address of var	
+	val = *ptr; // take the value available at ptr
+	cout << "Value of var :" << var << endl;
+	cout << "Value of ptr :" << ptr << endl;
+	cout << "Value pointed by ptr :" << *ptr << endl;
+	cout << "Value of val :" << val << endl;
+	var += 400;
+	cout << "After changing var to 3400:" << endl;
+	cout << "Value of var :" << var << endl;
+	cout << "Value of ptr :" << ptr << endl;
+	cout << "Value pointed by ptr :" << *ptr << endl;
+	cout << "Value of val :" << val << endl;
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   double a = 21.09399;
+   float b = 10.90;
+   int c ;
+
+   c = (int) a;
+   cout << "Line 1 - Value of (int)a is :" << c << endl ;
+
+   c = (int) b;
+   cout << "Line 2 - Value of (int)b is  :" << c << endl ;
+
+   return 0;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main () {
+   // Local variable declaration:
+   int x, y = 10;
+
+   x = (y < 10) ? 30 : 40;
+   cout << "value of x: " << x << endl;
+
+   return 0;
+}
+
+
+
+
+
+
+
+#include <iostream>
+
+int main() {
+    int a = 5;
+    int b = 10;
+    int result;
+
+    std::cout << "Value of a: " << a << std::endl;      // Output: Value of a: 5
+    std::cout << "Value of b: " << b << std::endl;      // Output: Value of b: 10
+
+    // The comma operator evaluates (a = a + 1), then (b = b * 2), then (a + b)
+    // The value of the entire expression assigned to 'result' is the value of the last expression (a + b).
+    result = (a = a + 1, b = b * 2, a + b);
+
+    std::cout << "Now Value of a: " << a << std::endl;      // Output: Value of a: 6
+    std::cout << "Now Value of b: " << b << std::endl;      // Output: Value of b: 20
+    std::cout << "Value of result: " << result << std::endl; // Output: Value of result: 26
+
+    return 0;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	int a = 10; short b = 20; long c = 30; char d = 'a'; 
+	float e = 3.14; double f = 3.147; wchar_t g = 'a';
+	cout << "Size of char : " << sizeof(char) << endl;
+	cout << "Size of char variable: " << sizeof(d) << endl;
+	cout << "Size of int : " << sizeof(int) << endl;
+	cout << "Size of int variable : " << sizeof(a) << endl;
+	cout << "Size of short int : " << sizeof(short int) << endl;
+	cout << "Size of short variable: " << sizeof(b) << endl;
+	cout << "Size of long int : " << sizeof(long int) << endl;
+	cout << "Size of long variable : " << sizeof(c) << endl;
+	cout << "Size of float : " << sizeof(float) << endl;
+	cout << "Size of float variable: " << sizeof(e) << endl;
+	cout << "Size of double : " << sizeof(double) << endl;
+	cout << "Size of double variable: " << sizeof(f) << endl;
+	cout << "Size of wchar_t : " << sizeof(wchar_t) << endl;
+	cout << "Size of wchar_t variable : " << sizeof(g) << endl;
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
