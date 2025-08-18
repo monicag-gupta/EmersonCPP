@@ -18,3 +18,37 @@ int main() {
    cout << "Line 6 - Value of c is: " << c << endl ;
    return 0;	}
 
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+int main() {
+    int a = 21;
+    int b = 5;
+    cout << "a = " << a << ", b = " << b << endl;
+    cout << "a+b = " << a + b << "\na-b = " << a - b << endl;
+    cout << "a*b = " << a * b << "\na/b = " << a / b << endl;
+    cout << "a%b = " << a % b << "\na-b = " << a - b << endl;
+    cout << "a<b is " << (a < b) << "\na>b is " << (a > b) << endl;
+    cout << "a<=b is " << (a <= b) << "\na>=b is " << (a >= b) << endl;
+    cout << "a==b is " << (a == b) << "\na!=b is " << (a != b) << endl;
+    cout << "(a>5 && b<3) is : " << (a > 5 &&  b < 3) << endl;
+    cout << "(a>5 || b<3) is : " << (a > 5 || b < 3) << endl;
+    cout << "(!(a>5 && b<3)) is : " << (!(a>5 && b<3)) << endl;
+    cout << "a&2 = " << (a & 2) << "\na|2 = " << (a | 2) << endl;
+    cout << "a<<2 = " << (a << 2) << "\na>>2 = " << (a >> 2) << endl;
+    cout << "a^2 = " << (a ^ 2) << endl;
+    cout << "a++ = " << (a++) << "\na = " << (a) << endl;
+    cout << "++a = " << (++a) << "\na = " << (a) << endl;
+    cout << "a-- = " << (a--) << "\na = " << (a) << endl;
+    cout << "--a = " << (--a) << "\na = " << (a) << endl;
+    return 0;
+}
+
