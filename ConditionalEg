@@ -57,4 +57,152 @@ int main () {
 
 
 
+#include <iostream>
+using namespace std;
+int main()
+{
+ineligible:
+      cout<<"Enter your age:\n";
+      int age;  //5 10 20
+      cin>>age; //init ; updation of variable for condition
+      if (age < 18){ //condition
+            cout<<"You are not eligible to vote!\n";
+            goto ineligible; //repetative
+      }
+      else       {
+              cout<<"You are eligible to vote!";
+      }
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n, i;
+  cout << "Enter the Number to check Prime: ";
+  cin >> n; //9
+  for(i = 2; i <= n-1; i++)  { //init i=2 ; 3<=8;i=3
+      if(n % i == 0)       {  //if(9%3 ==0) {}
+          cout<<"Number is not Prime."<<endl;
+          break;
+      }	  
+  }
+  if (i==n)
+      cout << "Number is Prime."<<endl;
+  return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n, i;
+  cout << "Enter the Number to check Prime: ";
+  cin >> n; //9
+  i=2; //init i=2
+ while(i <= n-1)  { 
+      if(n % i == 0)       {
+          cout<<"Number is not Prime."<<endl;
+          break;
+      }	
+      cout<<i; i++; 
+}
+  if (i==n)
+      cout << "Number is Prime."<<endl;
+  return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n, i;
+  cout << "Enter the Number to check Prime: ";
+  cin >> n; //9
+  i=2; //init i=2
+ do{ 
+      if(n % i == 0)       {
+          cout<<"Number is not Prime."<<endl;
+          break;
+      }	
+      cout<<i; i++;  
+  } while(i <= n-1);
+  if (i==n)
+      cout << "Number is Prime."<<endl;
+  return 0;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+int main() {
+    int a = 1;
+    do {
+        if (a == 1 or a==7) {
+            // skip the iteration.
+            cout << "#" << a << "It's weekends!!"<<endl;
+            a = a + 1;
+            continue;
+        }
+        cout << "#" << a <<" It's a working weekday." << endl;
+        a = a + 1;
+    } while (a < 8);
+    return 0;
+}
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+int main() {
+    int ch = 0;
+    int a = 10;
+    int b = 20;
+    while (true)
+    {
+        cout << "\n\n******Menu******\n1.add\n2.Sub\n3.Enter nos.\n4.Exit\nEnter choice";
+        cin >> ch;
+        if (ch == 1)
+            cout << "a+b=" << a + b;
+        else if (ch == 2)
+            cout << "a-b=" << a - b;
+        else if (ch == 3) {
+            cout << "Enter a: ";
+            cin >> a;
+            cout << "Enter b: ";
+            cin >> b;
+        }
+        else if (ch == 4)
+            break;
+        else
+            cout << "Wrong choice";
+    }
+    cout << "bye bye";
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
 
