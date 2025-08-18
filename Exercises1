@@ -183,6 +183,29 @@ WAP to generate 5 random numbers between 5-10.
 Rand() % (higher_limit - lower_limit + 1) + lower_limit
 
 
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int main() {
+    int i, j;
+
+    /* generate 5  random numbers between 5 and 10. */
+    for (i = 0; i < 5; i++) {
+        // generate actual random number
+        //Rand() % (higher_limit - lower_limit + 1) + lower_limit
+        j = rand() % (6) + 5;
+        cout << " Random Number : " << j << endl;
+    }
+
+    return 0;
+}
+//output is 5 random numbers between 0-10…
+
+
+
+
+
+
 
 
 
