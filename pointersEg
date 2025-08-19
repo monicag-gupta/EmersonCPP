@@ -488,6 +488,11 @@ int main()  {
 	// Accessing structure members using 
 	// structure pointer 
 	cout << p2->x << " " << p2->y; 
+
+    // Accessing structure members using 
+	// structure pointer 
+	cout << (*p2).x << " " <<(*p2).y; 
+
 	return 0; 
 }
 
