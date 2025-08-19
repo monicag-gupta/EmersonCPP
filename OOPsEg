@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
-class Emp {  //class
-private:  //attributes
+class Emp {  //class : Encapsulated as a meta Information
+private:  //attributes  // Encapsulation or data hiding
 	char *name;
 	int sal;
-public:	//behaviour
+public:	//behaviour //Abstraction
 	void setData(char *nm, int s) {
 		name = nm;
 		sal = s;
@@ -14,9 +14,13 @@ public:	//behaviour
 	}
 };
 int main() {
-	//Object
+	//Object creation
 	Emp e1;
-	e1.setData((char *)"Ishu", 50000);
+	e1.setData((char *)"Ishu", 50000);  //member function call
 	e1.print();
 	return 0;
 }
+
+
+
+
