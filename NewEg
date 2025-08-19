@@ -7,17 +7,20 @@ struct MyClass {
 };
 int main() {
 	std::cout << "1: ";
-	MyClass * p1 = new MyClass;
+	MyClass* p1 = new MyClass;
 	// allocates memory by operator new (sizeof(MyClass)) then constructs object at new space
 	std::cout << "2: ";
-	MyClass * p2 = new (std::nothrow) MyClass;
+	MyClass* p2 = new (std::nothrow) MyClass;
 	// allocates mem. by  op. new (sizeof(MyClass),std::nothrow) then constructs object at new space
 	std::cout << "3: ";
 	new (p2) MyClass;
 	// doesn’t allocate memory-calls: op. new (sizeof(MyClass),p2) but constructs an object at p2
 	// Notice though that calling this function directly does not construct an object:
-	std::cout << "4: ";
-	MyClass * p3 = (MyClass*) ::operator new (sizeof(MyClass));
+	std::cout << "4: (no constructor called) ";
+	MyClass* p3 = (MyClass*) ::operator new (sizeof(MyClass));
 	// allocates mem. by calling: op. new (sizeof(MyClass)) but does not call MyClass's constructor
-	delete p1;		delete p2;		delete p3;		return 0;
+	delete p1;		
+	delete p2;		
+	delete p3;		
+	return 0;
 }
