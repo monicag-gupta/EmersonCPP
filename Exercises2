@@ -1,0 +1,36 @@
+Design an array of 5 int elements:
+98, 78, 56, 34, 11
+“John Doe”, “Eric Gama”, “Jane Smith”, “Emission Grand”, “Treesa Vega”
+Make a pointer (*n) point to the array
+Now design a menu driven code with options:
+1. Name1, id1
+2. Name2
+..
+6. Exit
+Should exit on choice 6.
+According to choice, print the name by using pointer arithmetic. (single liner resolution of the menu items.
+
+
+
+
+Solution:
+#include <iostream>  
+using namespace std;
+int main()
+{
+    int a[] = { 98, 78, 56, 34, 11 };
+    int ch;
+    const char* name[5] = { "John Doe", "Eric Gama", "Jane Smith", "Emission Grand", "Treesa Vega" };
+    while (true) {
+        cout << "\n\n1.Name1\n2.Name2\n3.Name3\n4.Name4\n5.Name5\n6.Exit\nEnter Choice:";
+        cin >> ch;
+        if (ch >= 1 && ch <= 5)
+            cout << "\nDetails at " << ch << " is Name: " << *(name + (ch-1)) << " Id : " << *(a + (ch-1)) << endl;
+        else if (ch == 6)
+            break;
+        else
+            cout << "Invalid choice" << endl;
+    }
+
+}
+
