@@ -264,9 +264,16 @@ int main() {
 }
 
 
-(int (*Operation)(int, int))[4]
+int (*ops[4])(int, int) = { Sum, Sub, Mul, Div };
+
+ops[1](3,4) -> Sub
 
 
+int sum(int x, int y){return x+y;}
+
+int (*sumPtr)(int, int)
+sumPtr=sum;
+sumPtr(3,4); // 7
 
 
 
