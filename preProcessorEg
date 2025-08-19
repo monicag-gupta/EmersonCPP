@@ -1,0 +1,11 @@
+#include <iostream>
+#include <stdlib.h>
+#define INIT_X_VALUE 10 
+#define INIT_Y_VALUE 100 
+int main(int argc, char* argv[]) {
+    int x, y;
+    x = INIT_X_VALUE;
+    y = INIT_Y_VALUE;
+    std::cout<<"X is "<<x<<" Y is "<<y<<std::endl;
+    return 0;
+}
