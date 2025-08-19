@@ -404,4 +404,170 @@ int main()  
 
 
 
+#include <iostream>
+using namespace std;
+class A {   
+public:			
+	int a = 9;
+	void print()	{cout << "This prints class attribute a: " << a<<endl; 	}
+	void print(int x)	{
+		cout << "This print current parameter as int x: " << x<<endl;	}
+             void print(char x)	{
+		cout << "This print current parameter as char x: " << x<<endl;	}
+	void print(int x, float f)	{
+		cout << "This print product of x and f: " << x*f<<endl;	}
+	void print(float f, int x)	{
+		cout << "This print division of f / x: " << f/x<<endl;	}
+};
+int main() {
+	A a;
+	a.print();
+	a.print(4); 	a.print('A');
+	a.print(5, 6.7);	a.print(10.5, 2);
+	return 0;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+class A {   
+public:			
+	int a = 9;
+	void print()
+	{
+		cout << "This prints class attribute a: " << a<<endl;
+	}
+};
+class B : public A
+{
+public:
+	void print()
+	{	cout << "This prints square of class attribute a: " << a*a << endl;
+	}
+};
+int main() {
+	A a;
+	a.print();
+	B b;
+	b.print();
+	return 0;
+}
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+class A {
+public:
+	int a = 9;
+	void print(int x) 	{
+		cout << "This prints class attribute a: " << a<<endl;
+		cout << "and x : " << x<<endl;
+	}
+};
+class B : public A
+{
+public:
+	void print(float x) 	{
+		cout << "This prints square of class attribute a: " << a*a << endl;
+		cout << "and x : " << x << endl;
+	}
+};
+int main() {
+	A a;
+	a.print(5);
+	B b;
+	//b.print(4);
+	b.print((float)3.6);
+	return 0;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+class A {   
+public:			
+	int a;
+	A()	{	a = 0;	}  //Default Constructor
+	A(int x)	{	a = x;	}   //Parameterized Constructor
+};
+
+int main() {
+	A *a=new A();
+	A *b = new A(10);
+	cout << "Default Constructor gives a=" << a->a<<endl;
+	cout << "Parameterized constructor gives a=" << b->a<<endl;
+	
+	return 0;
+}
+
+
+
+
+
+//#include "stdafx.h"  //for earlier versions of Visual Studio.
+#include <iostream>
+using namespace std;
+class A {   
+public:			
+	int a;
+	A()		{	a = 10;	}  //Constructor
+	~A() { a = 0;	cout << "Destructor Called"<<endl; }   //Destructor
+};
+
+int main() {
+	A *a=new A();
+	cout << "Default Constructor gives a=" << a->a<<endl;
+	delete a;
+	return 0;
+}
+
+
+
+
+
+#include<iostream>
+using namespace std;
+class Complex {
+private:
+    int real, imag;
+public:
+    Complex(int r = 0, int i =0)  {real = r;   imag = i;}
+    // This is automatically called when '+' is used with between two Complex objects
+    Complex operator + (Complex const &obj) {
+         Complex res;
+         res.real = real + obj.real;
+         res.imag = imag + obj.imag;
+         return res;
+    }
+    void print() { cout << real << " + i" << imag << endl; }
+};
+int main() {
+    Complex c1(10, 5), c2(2, 4);
+    Complex c3 = c1 + c2; // An example call to "operator+"
+    c3.print();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
