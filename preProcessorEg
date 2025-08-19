@@ -13,6 +13,14 @@ int main(int argc, char* argv[]) {
 
 
 
+
+
+
+
+
+
+
+
 The conditional directives tell the compiler to omit or include certain code snippets based on various criteria.
 Example:
 #include <iostream>
@@ -113,6 +121,79 @@ printf("\nI am in School");
 void College(){
 printf("\nI am in College");
 }
+
+
+
+
+
+
+
+Prevents multiple inclusions of a header file
+// myheader.h
+#pragma once
+#include <iostream>
+ 
+void hello() {
+    std::cout << "Hello from header!\n";
+}
+If you include myheader.h multiple times, it will only be compiled once.
+
+
+
+
+
+
+
+
+//Controls alignment of structure members in memory.
+#include <iostream>
+#pragma pack(push, 1)   // Align members to 1-byte boundaries
+struct MyStruct {
+    char a;
+    int b;
+};
+#pragma pack(pop)       // Restore default alignment
+int main() {
+    std::cout << "Size of MyStruct: " << sizeof(MyStruct) << "\n"; 
+}
+//Without packing, size may be 8 (due to padding). With #pragma pack(1), it becomes 5.
+
+
+
+
+
+//Controls alignment of structure members in memory.
+#include <iostream>
+#pragma pack(push, 1)   // Align members to 1-byte boundaries
+struct MyStruct {
+    char a;
+    int b;
+};
+#pragma pack(pop)       // Restore default alignment
+
+struct MyStruct2{
+    char a;
+    int b;
+    char c;
+    double d;
+};
+
+struct MyStruct3 {
+    double d;
+    int b;
+    char a;    
+    char c;    
+};
+int main() {
+    std::cout << "Size of MyStruct: " << sizeof(MyStruct) << "\n";
+    std::cout << "Size of MyStruct2: " << sizeof(MyStruct2) << "\n";
+    std::cout << "Size of MyStruct3: " << sizeof(MyStruct3) << "\n";
+}
+//Without packing, size may be 8 (due to padding). With #pragma pack(1), it becomes 5.
+
+
+
+
 
 
 
