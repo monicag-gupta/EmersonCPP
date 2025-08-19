@@ -499,6 +499,61 @@ int main()  {
 
 
 
+#include <iostream>
+using namespace std;
+struct StrCar
+{
+	char RegCode[10];
+	int PhoneNo;
+	char Colour[10];
+	int Model;
+};
+
+int main() {
+	StrCar* Car = new StrCar;
+
+	cout << "enter regCode of Car:" << endl;
+	cin >> Car->RegCode;
+	cout << "you entered" << endl;
+	cout << Car->RegCode << endl;
+
+	delete Car;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+struct StrCar
+{
+	char RegCode[10];
+	int PhoneNo;
+	char Colour[10];
+	int Model;
+};
+
+int main(){
+	StrCar **Car;                  //Pointer to pointer or type StrCar
+	Car = new StrCar *[10];  //Declares array of pointers
+	Car[0] = new StrCar;      //Initializes car[0] only
+	cout<<"enter1:"<<endl;
+	cin  >> Car[0]->RegCode;
+	cout<<"you entered"<<endl;
+	cout<<Car[0]->RegCode<<endl;
+	system("pause");
+	return 0;
+}
+
+
 
 
 
