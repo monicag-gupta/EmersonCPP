@@ -17,3 +17,18 @@ Use pointers:
   Use delete to free memory when deleting employees.
   Create a Menu System for user interaction.
 
+
+
+
+Enhance the Features to Cover:
+OOP (Encapsulation, Inheritance) – Employee, Manager
+Pointers – Used in menu system
+Smart Pointers (std & Boost) – shared_ptr, unique_ptr, boost::shared_ptr
+Boost Regex – Input validation for names
+Boost Filesystem – Save/load employee data
+Dynamic memory management – via smart pointers (no manual delete needed)
+
+
+
+
+.
