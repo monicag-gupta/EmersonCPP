@@ -110,6 +110,36 @@ int (*ops[4])(int, int) = { Sum, Sub, Mul, Div };
 
 
 
+Rewrite the distance program to print addition of two distances sent as parameter. 
+#include<iostream>
+// C++ program to pass structure as an argument  to the functions using Call By Value Method 
+using namespace std;
+struct Distance {
+	int kilometer;
+	int meter;
+};
+// accepts distance as its parameters 
+void DisplayDistance(Distance d)
+{
+	cout << "Total distance:";
+	cout << "kilometer: " << d.kilometer << endl;
+	cout << "meter: " << d.meter << endl;
+	d.meter = 500;
+}
+int main()
+{
+	Distance Distance1;
+	// assigning values to structure elements 
+	Distance1.kilometer = 10;
+	Distance1.meter = 455;
+	DisplayDistance(Distance1);
+	cout << Distance1.meter;  //455
+	return 0;
+}
+
+
+
+
 
 
 
