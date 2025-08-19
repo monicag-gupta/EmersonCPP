@@ -197,4 +197,15 @@ int main() {
 
 
 
+#include <iostream>
+#define MAX(x,y) ((x > y) ? x : y)
+int main() {
+    std::cout << MAX(7, 4) << std::endl;
+    std::cout << MAX(7.90, 4.45) << std::endl;
+    //std::cout << MAX(7.90, "abc") << std::endl;
+
+}
+
+
+
 
