@@ -1,4 +1,4 @@
-Create a menu-driven Employee Management System in C++ that allows you to:
+I. Create a menu-driven Employee Management System in C++ that allows you to:
 Add Employees (Name, ID, Salary).
 Display All Employees.
 Search Employee by ID.
@@ -20,7 +20,7 @@ Use pointers:
 
 
 
-Enhance the Features to Cover:
+II. Enhance the Features to Cover:
 OOP (Encapsulation, Inheritance) – Employee, Manager
 Pointers – Used in menu system
 Smart Pointers (std & Boost) – shared_ptr, unique_ptr, boost::shared_ptr
@@ -48,6 +48,64 @@ Display Employees
 Search Employee by ID
 Delete Employee by ID
 Save/Load Data (Boost filesystem)
+
+
+
+
+III. Enhance the exercise now to include:
+
+OOP: Employee (base), Manager (derived, overrides display()).
+Pointers: store polymorphic objects via std::shared_ptr<Employee>.
+Smart pointers: std::shared_ptr, easy to add std::unique_ptr in factory.
+Boost:
+Regex for validating names/IDs.
+Filesystem for save/load.
+STL: vector, algorithms (sort, find_if, remove_if, accumulate).
+Templates:
+Generic Repository constrained with SFINAE: only types derived from Employee.
+Generic utility functions (range printing, payroll).
+Functors:
+Comparators / predicates: BySalaryDesc, ByNameAsc, IdEquals.
+SFINAE + type_traits:
+Constrain templates to std::is_base_of<Employee, T>.
+Detection of getSalary() via void_t trait for payroll utility.
+static_assert checks to enforce polymorphic base.
+
+Step-by-Step Plan
+Define classes
+Employee (id, name, salary), virtual display(), getters.
+Manager : public Employee (+ department), override display().
+Traits & SFINAE
+is_employee<T> = std::is_base_of<Employee, T>.
+has_getSalary<T> using std::void_t.
+Constrain templates with std::enable_if_t.
+Functors (function objects)
+BySalaryDesc (for std::sort)
+ByNameAsc
+IdEquals (for std::find_if / remove_if)
+Templates using STL
+Repository<T> (stores std::vector<std::shared_ptr<T>>), only for T : Employee.
+Generic printRange(It first, It last).
+totalPayroll(vec) available only if T has getSalary().
+Boost Regex & Filesystem
+Validate ID (digits) and Name (letters/spaces).
+Save/load CSV using boost::filesystem::path.
+Menu
+Add Employee/Manager.
+Display all (with sorted views via functors).
+Search by ID.
+Delete by ID.
+Save / Load.
+
+
+
+
+
+
+
+
+
+
 
 
 
