@@ -313,6 +313,34 @@ int main() {
 
 
 
+#include <iostream>
+using namespace std;
+int main() {
+    int a = 10;
+    int b = 20;
+    const int c = 30;
+    // const pointer to const int
+    const int* const p = &a;
+    const int* const p2c = &c;
+    cout << "Initially: *p = " << *p << endl;
+    // cannot modify value through p
+    // *p = 15;  // ERROR: assignment of read-only location
+    // cannot reassign pointer
+    // p = &b;   // ERROR: assignment of read-only variable 'p'
+    // value can still be changed directly (not via pointer)
+    a = 30;
+    // value of c is also const, can not be changed
+    // c = 90;
+    cout << "After modifying a directly: *p = " << *p << endl;
+    return 0;
+}
+
+
+
+
+
+
+
 
 
 
