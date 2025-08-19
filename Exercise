@@ -28,6 +28,27 @@ Boost Regex – Input validation for names
 Boost Filesystem – Save/load employee data
 Dynamic memory management – via smart pointers (no manual delete needed)
 
+Use Smart Pointers
+Use std::unique_ptr<Employee> and std::shared_ptr<Employee> to store employees.
+Show Boost smart pointers (boost::scoped_ptr, boost::shared_ptr) for comparison.
+
+Use Boost Regex
+Validate employee name (only alphabets allowed).
+Validate employee ID (only numbers).
+
+Use Boost Filesystem
+Save employee data to a file.
+Load employee data at startup.
+
+
+
+Menu System
+Add Employee / Manager
+Display Employees
+Search Employee by ID
+Delete Employee by ID
+Save/Load Data (Boost filesystem)
+
 
 
 
