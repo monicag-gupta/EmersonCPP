@@ -61,6 +61,55 @@ int main() {
 
 
 
+#include <iostream>
+
+using namespace std;
+int main () {
+   int  *ptr = NULL;
+   cout << "The value of ptr is " << ptr <<endl ;
+ 
+   return 0;
+}
+
+
+
+
+
+#include<iostream>
+using namespace std;
+int main() {
+    int x = 42;
+    int* p = &x;
+    int** pp = &p;
+
+    cout << "x = " << x << " with address : "<< &x <<endl;
+    cout << "*p = " << *p <<" with address : " << p << endl;
+    cout << "**pp = " << **pp << " with address : " << pp << endl;
+    cout << " with address of pp : " << &pp << endl;
+
+
+    **pp = 20;
+
+
+    cout << "x = " << x << " with address : " << &x << endl;
+    cout << "*p = " << *p << " with address : " << p << endl;
+    cout << "**pp = " << **pp << " with address : " << pp << endl;
+    cout << " with address of pp : " << &pp << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
