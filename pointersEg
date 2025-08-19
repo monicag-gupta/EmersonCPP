@@ -104,6 +104,109 @@ int main() {
 
 
 
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+    int ptr1[5]; // integer array declaration  
+    int *ptr2[5]; // integer array of pointer declaration  
+    std::cout << "Enter five numbers :" << std::endl;  
+    for(int i=0;i<5;i++)  
+    {  
+        std::cin >> ptr1[i];  
+    }  
+    for(int i=0;i<5;i++)  
+    {  
+        ptr2[i]=&ptr1[i];   
+    }  
+    // printing the values of ptr1 array  
+    std::cout << "The values are" << std::endl;  
+    for(int i=0;i<5;i++)  
+    {  
+        std::cout << *ptr2[i] << std::endl;  
+    }  
+ }  
+
+
+
+#include <iostream>  
+using namespace std;
+int main()
+{
+    int* ptr;  // integer pointer declaration  
+    int marks[10]; // marks array declaration  
+    std::cout << "Enter the elements of an array :" << std::endl;
+    for (int i = 0; i < 10; i++)
+    {
+        cin >> marks[i];
+    }
+    ptr = marks; // both marks and ptr pointing to the same element..  *ptr=marks[0], *(ptr +1) = marks[1]… 
+    std::cout << "The value of *ptr is :" << *ptr << std::endl;
+    std::cout << "The value of *marks is :" << *marks << std::endl;
+    std::cout << "The value of marks[0] is :" << marks[0] << std::endl;
+    std::cout << "The value of *ptr+1 is :" << *(ptr+1) << std::endl;
+    std::cout << "The value of *marks+1 is :" << *(marks+1) << std::endl;
+    std::cout << "The value of marks[1] is :" << marks[1] << std::endl;
+
+}
+
+
+
+
+#include <iostream>  
+using namespace std;  
+int main()  
+{  
+  char *names[5] = {"john",  
+                    "Peter",  
+                    "Marco",  
+                    "Devin",  
+                    "Ronan"};  
+for(int i=0;i<5;i++)  
+    {  
+        std::cout << names[i] << std::endl;  
+    }  
+    return 0;  
+}  
+
+
+
+
+
+#include <iostream>
+using namespace std;
+void printArray(int arr[5]);
+int main()
+{
+        int arr1[5] = { 10, 20, 30, 40, 50 };
+        int arr2[5] = { 5, 15, 25, 35, 45 };
+        printArray(arr1); //passing array to function
+        printArray(arr2);
+}
+void printArray(int arr[5])
+{
+    cout << "Printing array elements:"<< endl;
+    for (int i = 0; i < 5; i++)
+    {
+                   cout<<arr[i]<<"\n";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
