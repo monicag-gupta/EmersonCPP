@@ -106,8 +106,10 @@ int main() {
 }
 
 
+int (*ops[4])(int, int) = { Sum, Sub, Mul, Div };
 
-(int (*Operation)(int, int))[4]
+
+
 
 
 
