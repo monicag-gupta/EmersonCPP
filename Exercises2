@@ -34,3 +34,25 @@ int main()
 
 }
 
+
+
+
+
+
+
+Design a calculator based on function pointer . Use pointer arithmetic to make an array of function pointers pointing to these functions.
+Int Sum(int x, int y)
+Int Sub(int, int)
+Int mul(int, int)
+Int Div(int, int)
+Insert numbers
+Display numbers
+
+
+
+
+
+
+
+
+
