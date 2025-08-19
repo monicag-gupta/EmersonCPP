@@ -9,3 +9,111 @@ int main(int argc, char* argv[]) {
     std::cout<<"X is "<<x<<" Y is "<<y<<std::endl;
     return 0;
 }
+
+
+
+
+The conditional directives tell the compiler to omit or include certain code snippets based on various criteria.
+Example:
+#include <iostream>
+#define DEBUG 1
+#ifdef DEBUG
+    #define VAL 10 
+#else 
+    #define VAL 90 
+#endif 
+int main(int argc, char* argv[]) {
+    std::cout<<"VAL = "<<VAL<<std::endl;
+    return 0;
+}
+
+
+
+
+One standard use of the #ifndef directive is called a header guard. 
+If a single program includes the same header more than once, this can sometimes cause problems because some types may be defined more than one time. 
+A header guard prevents these problems by defining a new symbol and only including the header if the new symbol has not yet been defined. 
+This ensures the preprocessor only includes the file one time.
+
+#ifndef MY_HEADER_FILE_H_
+#define MY_HEADER_FILE_H_
+typedef int my_int_type;
+int my_function_prototype(void);
+#endif //end if for MY_HEADER_FILE_H_
+
+
+The #error and #warning directives allow for user defined errors and warnings that the compiler picks
+The utility of these directives is in making sure the program is configured correctly if there are limits on what conditions the program may compile. 
+Example:
+#include <stdio.h>
+#include <stdlib.h>
+#define DEBUG 1 
+#if DEBUG != 0 
+#define debug_printf(...) printf(__VA_ARGS) 
+#warning "Debugging is turned on" 
+#else #define debug_printf(...) 
+#endif 
+int main(int argc, char * argv[]){ 
+     debug_printf("This is a debug message\n"); 
+     return 0; 
+}
+The program above uses a preprocessor directive that causes the compiler to warn the user if debugging is enabled. 
+In other situations, #error might be more appropriate. For example, if the user has defined a value that is not in a valid range.
+
+
+
+
+#pragma
+#pragma once → avoid multiple includes
+#pragma once (Header Include Guard)
+Prevents multiple inclusions of a header file (alternative to #ifndef guards).
+#pragma pack → control struct alignment
+#pragma pack (Structure Packing)
+Controls alignment of structure members in memory.
+#pragma warning → manage compiler warnings
+#pragma warning (MSVC Specific)
+Used to enable, disable, or modify compiler warnings.
+#pragma warning(disable:4996)  // Disable deprecated function warning
+#pragma region → collapsible code regions in IDE
+#pragma region / #pragma endregion (MSVC IDE feature)
+Helps organize code in collapsible sections inside Visual Studio.
+#pragma region MathFunctions
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+#pragma endregion
+Now you can collapse/expand the region in VS editor.
+#pragma message → custom compiler messages
+Prints a message at compile time.
+#pragma message("Compiling program...")
+
+
+
+
+Priority for pragma 
+0    = Highest priority
+0-63 = Used by C libraries
+64   = First available user priority
+100  = Default priority
+255  = Lowest priority
+
+
+#include<stdio.h>
+void School();
+void College() ;
+#pragma startup School 105
+#pragma startup College
+#pragma exit College
+#pragma exit School 105
+void main(){
+printf("\nI am in main");
+}
+void School(){
+printf("\nI am in School");
+}
+void College(){
+printf("\nI am in College");
+}
+
+
+
+
