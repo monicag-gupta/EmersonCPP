@@ -264,6 +264,13 @@ int main() {
 }
 
 
+(int (*Operation)(int, int))[4]
+
+
+
+
+
+
 
 
 
