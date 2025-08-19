@@ -281,6 +281,41 @@ sumPtr(3,4); // 7
 
 
 
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 10;
+    int y = 20;
+    const int s = 30;
+    const int t = 40;
+    //int const pointers, pointers to constant variable:
+    int const* sptr = &s;
+    // constant pointer to int
+    int* const p = &x;
+
+    sptr = &t;
+    //*sptr = 90;
+
+    cout << "Initially: *p = " << *p << endl;
+    // we can modify the value through the pointer
+    *p = 15;
+    cout << "After modifying *p: x = " << x << endl;
+    // we cannot make p point somewhere else
+    // p = &y;   // ERROR: assignment of read-only variable 'p'
+    // but we can still modify x directly
+    x = 30;
+    cout << "After modifying x directly: *p = " << *p << endl;
+    return 0;
+}
+
+
+
+
+
+
+
+
 
 
 
