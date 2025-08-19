@@ -339,6 +339,95 @@ int main() {
 
 
 
+int const* is pointer to const int
+int *const is const pointer to int
+int const* const is const pointer to const int
+One way to remember the syntax (according to Bjarne Stroustrup) is the spiral rule
+The rule says, start from the name of the variable and move clockwise to the next pointer or type. Repeat until expression ends.
+The rule can also be seen as decoding the syntax from right to left.
+Using this rule, even complex declarations can be decoded like,
+int ** const is a const pointer to pointer to an int.
+int * const * is a pointer to const pointer to an int.
+int const ** is a pointer to a pointer to a const int.
+int * const * const is a const pointer to a const pointer to an int.
+int* p → normal pointer (can change pointer, can change value).
+int* const p → const pointer (pointer cannot change, but value can).
+const int* p → pointer to const (pointer can change, but value cannot through pointer).
+const int* const p → const pointer to const (neither pointer nor value can change).
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+struct Rectangle
+{
+	int width, height;
+};
+int main(void) {
+	struct Rectangle rec;
+	rec.width = 8;
+	rec.height = 5;
+	cout << "Area of Rectangle is: " << (rec.width * rec.height) << endl;
+	return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+struct student {
+  int roll_no;
+  string name;
+  int phone_number;
+};
+int main(){
+	struct student p1 = {1,"Brown",123443};
+  	struct student p2;
+  	p2 = p1;
+
+  	cout << "roll no : " << p2.roll_no << endl;
+  	cout << "name : " << p2.name << endl;
+  	cout << "phone number : " << p2.phone_number << endl;
+	return 0;
+}
+
+
+
+
+// C++ program to pass structure as an argument  to the functions using Call By Value Method 
+using namespace std; 
+struct Distance { 
+	int kilometer; 
+	int meter; 
+}; 
+// accepts distance as its parameters 
+void DisplayDistance(Distance d)
+{ 
+	cout << "Total distance:"; 
+	cout << "kilometer: "<< d.kilometer << endl; 
+	cout << "meter: " << d.meter << endl; 
+             d.meter=500;
+} 
+int main() 
+{ 
+             Distance Distance1; 
+	// assigning values to structure elements 
+	Distance1.kilometer = 10; 
+	Distance1.meter = 455; 
+             DisplayDistance(Distance1);
+              cout<<Distance1.meter;  //455
+	return 0; 
+}
+
+
+
+
+
 
 
 
