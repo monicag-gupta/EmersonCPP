@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+class Emp {  //class
+private:  //attributes
+	char *name;
+	int sal;
+public:	//behaviour
+	void setData(char *nm, int s) {
+		name = nm;
+		sal = s;
+	}
+	void print() {
+		cout << "Name : \"" << name << "\" Salary : " << sal << endl;
+	}
+};
+int main() {
+	//Object
+	Emp e1;
+	e1.setData((char *)"Ishu", 50000);
+	e1.print();
+	return 0;
+}
