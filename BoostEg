@@ -471,3 +471,50 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <boost/lambda/lambda.hpp>
+#include <boost/lambda/bind.hpp>
+#include <boost/lambda/if.hpp>   // <- important for if_then_else_return
+
+int main() {
+    using namespace boost::lambda;
+
+    std::vector<int> v = { 1, 2, 3, 4, 5 };
+
+    // Example 1: Two-parameter lambda (sum two numbers)
+    auto sum = _1 + _2;
+    std::cout << "Sum(10, 20) = " << sum(10, 20) << "\n";
+
+    // Example 2: Multiply with two arguments
+    auto multiply = _1 * _2;
+    std::cout << "Multiply(5, 6) = " << multiply(5, 6) << "\n";
+
+    // Example 3: Binding multiple arguments in STL algorithm
+    std::cout << "Vector elements + 100:\n";
+    std::for_each(v.begin(), v.end(),
+        std::cout << (_1 + 100) << " "    // _1 refers to current element
+    );
+    std::cout << "\n";
+
+    // Example 4: Compare two numbers
+    auto greater = _1 > _2;
+    std::cout << "Is (15 > 10)? " << (greater(15, 10) ? "Yes" : "No") << "\n";
+
+    // Example 5: Ternary-like expression (multiple parameters used)
+    auto choose = if_then_else_return(_1 > _2, _1, _2);
+    std::cout << "Max(7, 9) = " << choose(7, 9) << "\n";
+
+    return 0;
+}
+
+
+
+
+
