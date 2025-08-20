@@ -50,4 +50,85 @@ int main() {
 
 
 
+#include <boost/shared_ptr.hpp>
+#include <iostream>
+using namespace std;
+class Emp {
+public:
+    int xx;
+    Emp() {
+        cout << "Emp constructed";
+    }
+    Emp(int x) {
+        xx = x;
+        cout << "Emp constructed";
+    }
+    ~Emp() {
+        cout << "Emp destructed";
+    }
+    string display() {
+       cout << xx;
+       return " I am an Emp Object" ;
+    }
+};
+int main() {
+    cout << "In scope:";
+    {
+        boost::shared_ptr<Emp> p1(new Emp(20));
+        boost::shared_ptr<Emp> p2 = p1; // shared ownership
+        cout <<"\nP1:"<< p1->display() << "\nP2: " << p2->display() << endl;  // prints 20 20
+        cout << "use_count = " << p1.use_count() << endl; // 2
+    }
+    cout << ":Out of Scope";
+}
+
+
+
+
+
+
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+
+#include <iostream>
+using namespace std;
+class Emp {
+public:
+    int xx;
+    Emp() {
+        cout << "Emp constructed";
+    }
+    Emp(int x) {
+        xx = x;
+        cout << "Emp constructed";
+    }
+    ~Emp() {
+        cout << "Emp destructed";
+    }
+    string display() {
+       cout << xx;
+       return " I am an Emp Object" ;
+    }
+};
+int main() {
+    cout << "In scope:";
+    {
+        boost::shared_ptr<Emp> sp(new Emp(20));
+        boost::weak_ptr<Emp> wp = sp; // non-owning reference
+        cout <<"\nsp:"<< sp->display() << "\nwp: " << (wp.lock())->display() << endl;  // prints 20 20
+        cout << "use_count = " << sp.use_count() << endl; // 1
+    }
+    cout << ":Out of Scope";
+}
+
+
+
+
+
+
+
+
+
+
+
 
