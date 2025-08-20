@@ -1,0 +1,15 @@
+#include <boost/regex.hpp>
+#include <iostream>
+using namespace std;
+using namespace boost;
+
+int main() {
+    regex expr("(\\w+)@(\\w+).(\\w+)");
+    string email = "test@example.com";
+    if (regex_match(email, expr)) {
+        cout << "Valid email: " << email<<" !!"<<endl;
+    }
+    else
+        cout << "Invalid email address : " << email << endl;
+}
+
