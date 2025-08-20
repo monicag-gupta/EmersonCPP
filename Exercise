@@ -66,7 +66,6 @@ OOP (Encapsulation, Inheritance) – Employee, Manager
 Pointers – Used in menu system
 Smart Pointers (std & Boost) – shared_ptr, unique_ptr, boost::shared_ptr
 Boost Regex – Input validation for names
-Boost Filesystem – Save/load employee data
 Dynamic memory management – via smart pointers (no manual delete needed)
 
 Use Smart Pointers
@@ -76,11 +75,6 @@ Show Boost smart pointers (boost::scoped_ptr, boost::shared_ptr) for comparison.
 Use Boost Regex
 Validate employee name (only alphabets allowed).
 Validate employee ID (only numbers).
-
-Use Boost Filesystem
-Save employee data to a file.
-Load employee data at startup.
-
 
 
 Menu System
