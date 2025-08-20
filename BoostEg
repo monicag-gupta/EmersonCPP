@@ -197,3 +197,72 @@ int main() {
 
 
 
+
+
+
+#include <boost/intrusive_ptr.hpp>
+#include <iostream>
+using namespace std;
+class RefCounted {
+    int refCount = 0;
+public:
+    friend void intrusive_ptr_add_ref(RefCounted* p) { ++p->refCount; }
+    friend void intrusive_ptr_release(RefCounted* p) {
+        if (--p->refCount == 0) delete p;
+    }
+    void hello() { cout << "Hello from RefCounted!" << endl; }
+};
+int main() {
+    boost::intrusive_ptr<RefCounted> p(new RefCounted());
+    p->hello();
+}
+
+
+
+
+
+
+
+#include <boost/make_shared.hpp>
+#include <iostream>
+using namespace std;
+int main() {
+    auto p = boost::make_shared<int>(42);
+    cout << *p << endl;
+}
+
+
+
+
+
+
+#include <boost/filesystem.hpp>
+#include <iostream>
+namespace fs = boost::filesystem;
+int main() {
+    fs::path p("data.txt");
+    if (fs::exists(p)) {
+        std::cout << p << " exists\n";
+        if (fs::is_regular_file(p))
+            std::cout << "File size: " << fs::file_size(p) << " bytes\n";
+        else if (fs::is_directory(p))
+            std::cout << p << " is a directory\n";
+    }
+    else {
+        std::cout << p << " does not exist\n";
+    }
+}
+
+
+
+
+In Project folder create:
+data.txt:
+Hello, World!
+
+
+
+
+
+
+
