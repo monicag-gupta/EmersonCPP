@@ -70,5 +70,40 @@ int main() {
 
 
 
+#include <memory>
+
+#include <iostream>
+using namespace std;
+class Emp {
+public:
+    int xx;
+    Emp() {
+        cout << "Emp constructed";
+    }
+    Emp(int x) {
+        xx = x;
+        cout << "Emp constructed";
+    }
+    ~Emp() {
+        cout << "Emp destructed";
+    }
+    string display() {
+        cout << xx;
+        return " I am an Emp Object";
+    }
+};
+int main() {
+    cout << "In scope:";
+    {
+        shared_ptr<Emp> sp(new Emp(20));
+        weak_ptr<Emp> wp = sp; // non-owning reference
+        cout << "\nsp:" << sp->display() << "\nwp: " << (wp.lock())->display() << endl;  // prints 20 20
+        cout << "use_count = " << sp.use_count() << endl; // 1
+    }
+    cout << ":Out of Scope";
+}
+
+
+
 
 
