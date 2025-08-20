@@ -1,10 +1,9 @@
-I. Create a menu-driven Employee Management System in C++ that allows you to:
+I.a) Create a menu-driven Employee Management System in C++ that allows you to:
 Add Employees (Name, ID, Salary).
 Display All Employees.
 Search Employee by ID.
 Delete Employee by ID.
 Use OOP concepts (classes, encapsulation, inheritance) and pointers (dynamic memory, object pointers).
-
 
 Step-by-Step Plan
 Define an Employee class with:
@@ -12,10 +11,15 @@ Define an Employee class with:
   Functions: display().
 Use inheritance: Create a Manager class that extends Employee (with an extra field department).
 Use pointers:
-  Store employees in an array of Employees.
   Dynamically allocate memory using new.
   Use delete to free memory when deleting employees.
   Create a Menu System for user interaction.
+I.b) Use pointers:
+  Store employees in an array of Employees.
+
+
+
+
 
 
 
