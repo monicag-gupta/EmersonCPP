@@ -16,7 +16,7 @@ Use pointers:
   Use delete to free memory when deleting employees.
   Create a Menu System for user interaction.
 
-
+In essence, the double pointer (MyObject**) points to the beginning of the array of pointers, and each element within that array (MyObject*) then points to an individual object. This structure is common for managing collections of dynamically allocated objects, especially when the number of objects or the objects themselves need to be created or destroyed during program execution.
 
 
 
