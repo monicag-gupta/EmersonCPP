@@ -360,6 +360,28 @@ int main()
 
 
 
+#include <boost/asio.hpp>
+#include <iostream>
+using boost::asio::ip::tcp;
+int main() {
+    boost::asio::io_context io;
+    tcp::resolver resolver(io);
+    tcp::resolver::results_type endpoints = resolver.resolve("example.com", "80");
+    tcp::socket socket(io);
+    boost::asio::connect(socket, endpoints);
+    std::string request = "GET / HTTP/1.1\r\nHost: example.com\r\n\r\n";
+    boost::asio::write(socket, boost::asio::buffer(request));
+    char ourbuffer[1024];
+    size_t len = socket.read_some(boost::asio::buffer(ourbuffer));
+    std::cout.write(ourbuffer, len);
+    return 0;
+}
+
+
+
+
+
+
 
 
 
