@@ -337,6 +337,28 @@ int main() {
 
 
 
+#include <iostream>
+#include <filesystem>
+#include <fstream>
+
+int main()
+{
+    
+    std::ofstream ofs;
+    ofs.open(".\\Hello.txt");
+    ofs << "this is some text in the new file\n";
+    ofs.close();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
 
 
 
