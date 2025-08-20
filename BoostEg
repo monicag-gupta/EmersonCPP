@@ -446,3 +446,28 @@ int main() {
     std::cout << f2(20) << std::endl;    // 10 + 20 = 30
 }
 
+
+
+
+
+#include <boost/bind/bind.hpp>
+#include <iostream>
+using namespace boost::placeholders; // for _1, _2, ...
+int add3(int a, int b, int c) {
+    return a + b + c;
+}
+int main() {
+    // Fix the first argument to 5, let the next two be placeholders
+    auto f1 = boost::bind(add3, 5, _1, _2);
+    std::cout << "f1(10, 20) = " << f1(10, 20) << "\n"; // 5 + 10 + 20 = 35
+
+    // Fix the first and second arguments, leave the third dynamic
+    auto f2 = boost::bind(add3, 100, 200, _1);
+    std::cout << "f2(50) = " << f2(50) << "\n"; // 100 + 200 + 50 = 350
+
+    // Swap arguments using placeholders
+    auto f3 = boost::bind(add3, _2, _1, 0);
+    std::cout << "f3(7, 3) = " << f3(7, 3) << "\n"; // 3 + 7 + 0 = 10
+
+    return 0;
+}
