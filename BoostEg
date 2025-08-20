@@ -381,6 +381,24 @@ int main() {
 
 
 
+#include <boost/regex.hpp>
+#include <iostream>
+#include <string>
+int main() {
+    std::string text = "My email is example@test.com and backup is user@domain.org";
+    boost::regex pattern(R"((\w+)@(\w+)\.(\w+))");  // username@domain.tld
+    boost::smatch matches;
+    std::string::const_iterator start = text.begin();
+    std::string::const_iterator end = text.end();
+    while (boost::regex_search(start, end, matches, pattern)) {
+        std::cout << "Full match: " << matches[0] << "\n";
+        std::cout << "  Username: " << matches[1] << "\n";
+        std::cout << "  Domain:   " << matches[2] << "\n";
+        std::cout << "  TLD:      " << matches[3] << "\n\n";
+        start = matches[0].second;  // move past this match
+    }
+    return 0;
+}
 
 
 
