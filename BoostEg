@@ -422,3 +422,27 @@ int main() {
 }
 
 
+
+
+
+
+
+#include <boost/bind.hpp>
+#include <iostream>
+int add(int a, int b) {
+    return a + b;
+}
+struct Printer {
+    void print(int x) { std::cout << "Value: " << x << std::endl; }
+};
+int main() {
+    Printer p;
+    // Bind member function to object
+    auto f1 = boost::bind(&Printer::print, &p, _1);
+    f1(100);  // Output: Value: 100
+
+    // Bind first argument as 10
+    auto f2 = boost::bind(add, 10, _1);  // _1 is a placeholder
+    std::cout << f2(20) << std::endl;    // 10 + 20 = 30
+}
+
