@@ -1,0 +1,27 @@
+#include <memory>
+#include <iostream>
+using namespace std;
+class Emp {
+public:
+    Emp() {
+        cout << "Emp constructed";
+    }
+    Emp(int x) {
+        cout << "Emp constructed";
+    }
+    ~Emp() {
+        cout << "Emp destructed";
+    }
+    string display() {
+        return "I am an Emp Object";
+    }
+};
+int main() {
+    cout << "In scope:";
+    {
+        unique_ptr<Emp> p(new Emp());
+        cout << endl << p->display() << endl;  // prints display()
+        // no delete needed
+    }
+    cout << ":Out of Scope";
+}
