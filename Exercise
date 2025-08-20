@@ -18,7 +18,38 @@ Use pointers:
 
 In essence, the double pointer (MyObject**) points to the beginning of the array of pointers, and each element within that array (MyObject*) then points to an individual object. This structure is common for managing collections of dynamically allocated objects, especially when the number of objects or the objects themselves need to be created or destroyed during program execution.
 
+#include<iostream>
+using namespace std;
+class Emp {
+public:
+	void display() {
+		cout << "\nI am an employee\n";
+	}
+	Emp() {
+		cout << "An employee created"<<endl;
+	}
+	~Emp() {
+		cout << "An employee deleted" << endl;
+	}
+};
+int main() {
+	cout << "Normal array:\n";
+	Emp e[3];  //normal array // constructed objects
+	cout << "Normal array created!\n";
+	cout << "Pointer array:\n";
+	Emp** e2 = new Emp*[3];   //Pointer Object Array
+	cout << "Pointer  array created!\n";
+	cout << "pointer Object created:\n";
+	Emp* ee = new Emp();  //new Object//constructed
+	e2[0] = ee;
+	cout << "\nUsages:"<<endl;
+	e[0].display();   //Member fn call 
+	e2[0]->display();
 
+	delete ee;   // delete local pointer, destroy the heap object
+	cout << "\nMain ends :"<<endl;  //destroy normal array objects
+	
+}
 
 
 
