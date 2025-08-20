@@ -403,3 +403,22 @@ int main() {
 
 
 
+
+//#include <boost/regex.hpp>
+#include <iostream>
+#include <string>
+#include<regex>
+//using namespace boost;
+using namespace std;
+
+int main() {
+    std::string text = "Boost123 Regex456 Example789";
+    regex expr("\\d+");   // Match digits
+    smatch match;
+    while (regex_search(text, match, expr)) {
+        std::cout << "Found: " << match[0] << "\n";
+        text = match.suffix();  // Move to next
+    }
+}
+
+
