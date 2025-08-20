@@ -264,5 +264,31 @@ Hello, World!
 
 
 
+#include <boost/filesystem.hpp>
+#include <iostream>
+namespace fs = boost::filesystem;
+int main() {
+    fs::path p("data.txt");
+    if (fs::exists(p)) {
+        std::cout << p << " exists\n";
+        if (fs::is_regular_file(p))
+            std::cout << "File size: " << fs::file_size(p) << " bytes\n";
+        else if (fs::is_directory(p))
+            std::cout << p << " is a directory\n";
+    }
+    else {
+        std::cout << p << " does not exist\n";
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 
