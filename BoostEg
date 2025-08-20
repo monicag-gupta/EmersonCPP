@@ -130,5 +130,70 @@ int main() {
 
 
 
+#include <iostream>
+#include <boost/shared_ptr.hpp>
+class B; // forward declaration
+class A {
+public:
+    boost::shared_ptr<B> ptrB;
+    ~A() { std::cout << "A destroyed\n"; }
+};
+class B {
+public:
+    boost::shared_ptr<A> ptrA;
+    ~B() { std::cout << "B destroyed\n"; }
+};
+int main() {
+    {
+        boost::shared_ptr<A> a(new A());
+        boost::shared_ptr<B> b(new B());
+        a->ptrB = b;  // A points to B
+        b->ptrA = a;  // B points to A  (Cyclic reference!)
+    } // scope ends, but destructors not called
+    std::cout << "End of main\n";
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <boost/shared_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+
+class B; // forward declaration
+class A {
+public:
+    boost::shared_ptr<B> ptrB;
+    ~A() { std::cout << "A destroyed\n"; }
+};
+class B {
+public:
+    //boost::shared_ptr<A> ptrA;
+    boost::weak_ptr<A> ptrA; // weak_ptr breaks cycle
+
+    ~B() { std::cout << "B destroyed\n"; }
+};
+int main() {
+    {
+        boost::shared_ptr<A> a(new A());
+        boost::shared_ptr<B> b(new B());
+        a->ptrB = b;  // A points to B
+        b->ptrA = a;  // B points to A  (Cyclic reference has been broken!)
+    } // scope ends, and destructors are called
+    std::cout << "End of main\n";
+    return 0;
+}
+
+
+
+
+
 
 
