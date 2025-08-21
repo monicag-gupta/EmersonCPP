@@ -128,6 +128,10 @@ public:
 	int id;
 	Emp(int x) { id = x; }
 	Emp() {}
+	bool operator<(const Emp& other) const {
+		return this->id < other.id;  // only compare id
+	}
+
 };
 int main() {
 	std::set<Emp> Emps;
