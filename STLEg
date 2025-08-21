@@ -411,12 +411,36 @@ int main() {
 
 
 
+#include <queue>
+#include <iostream>
+using namespace std;
+
+int main() {
+	std::priority_queue<int> q;
+	int l, m;
+label:
+	cout << "Level: ";
+	cin >> l;
+	q.push(l);
+	cout << "More?(0/1)";
+	cin >> m;
+	if (m == 1) goto label;
+	while (!q.empty()) {
+		std::cout << q.top() << " ";
+		q.pop();
+	}
+	std::cout << '\n';
+}
+
+
+
+
 
 Hospital Emergency Queue System
 Problem Statement:
 Create a system that simulates a hospital's emergency patient queue. Each patient has:
-A name
-An age
+//A name
+//An age
 A severity level (1 to 10, where 10 is most critical)
 The system should:
 Add a patient to the queue.
@@ -424,6 +448,8 @@ Treat (remove) the most critical patient.
 Display the current patient queue.
 Exit.
 Use std::priority_queue to manage patients by severity.
+
+
 
 
 
