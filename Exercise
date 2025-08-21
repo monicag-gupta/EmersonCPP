@@ -89,6 +89,21 @@ Save/Load Data (Boost filesystem)
 
 III. Enhance the exercise now to include:
 
+Vectors for Employee Manipulation
+Use Templates to make the data type of empId generic (may be string or numbers)
+
+
+
+
+
+
+
+
+
+
+IV. Enhance the exercise now to include:
+
+
 OOP: Employee (base), Manager (derived, overrides display()).
 Pointers: store polymorphic objects via std::shared_ptr<Employee>.
 Smart pointers: std::shared_ptr, easy to add std::unique_ptr in factory.
