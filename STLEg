@@ -328,4 +328,10 @@ int main(int argc, char ** argv) {
 
 
 
+Excercise:
+Prepare a map<int, Emp>
+int -> id of the Emp (id, name, sal)
+Display 5 employees inserted in the map.
+
+
 
