@@ -335,3 +335,105 @@ Display 5 employees inserted in the map.
 
 
 
+
+// stack::push/pop
+#include <iostream>       // std::cout
+#include <stack>          // std::stack
+
+int main () {
+  std::stack<int> mystack;
+  for (int i=0; i<5; ++i) mystack.push(i);
+  std::cout << "Popping out elements...";
+  while (!mystack.empty())  {
+     std::cout << ' ' << mystack.top();
+     mystack.pop();
+  }
+  std::cout << '\n';
+  return 0;
+}
+
+
+
+
+
+
+// queue::push/pop
+#include <iostream>       // std::cin, std::cout
+#include <queue>          // std::queue
+int main () {
+  std::queue<int> myqueue;
+  int myint;
+  std::cout << "Please enter some integers (enter 0 to end):\n";
+  do {
+    std::cin >> myint;
+    myqueue.push (myint);
+  } while (myint);
+  std::cout << "myqueue contains: ";
+  while (!myqueue.empty())  {
+    std::cout << ' ' << myqueue.front();
+    myqueue.pop();
+  }
+  std::cout << '\n';
+  return 0;
+}
+
+
+
+
+#include <queue>
+#include <iostream>
+int main() {
+	std::priority_queue<int> q;
+	for (int n : {1, 8, 5, 6, 3, 4, 0, 9, 7, 2})
+		q.push(n);
+	while (!q.empty()) {
+		std::cout << q.top() << " ";
+		q.pop();
+	}
+	std::cout << '\n';
+}
+
+
+
+
+#include <queue>
+#include <iostream>
+int main() {
+	std::priority_queue<int> q;
+	for (int n : {1, 8, 5, 6, 3, 4, 0, 9, 7, 2})
+		q.push(n);
+	while (!q.empty()) {
+		std::cout << q.top() << " ";
+		q.pop();
+	}
+	std::cout << '\n';
+}
+
+
+
+
+Hospital Emergency Queue System
+Problem Statement:
+Create a system that simulates a hospital's emergency patient queue. Each patient has:
+A name
+An age
+A severity level (1 to 10, where 10 is most critical)
+The system should:
+Add a patient to the queue.
+Treat (remove) the most critical patient.
+Display the current patient queue.
+Exit.
+Use std::priority_queue to manage patients by severity.
+
+
+
+
+
+
+
+
+
+
+
+
+
