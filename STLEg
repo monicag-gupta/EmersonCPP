@@ -523,6 +523,749 @@ int main() {
 
 
 
+https://www.quantstart.com/articles/C-Standard-Template-Library-Part-III-Algorithms
+
+
+
+
+Nonmodifying Algorithms
+for_each() 
+count() 
+count_if() 
+min_element() 
+max_element() 
+find() 
+find_if() 
+search_n() 
+search() 
+find_end()
+find_first_of() 
+adjacent_find() 
+equal()
+mismatch() 
+lexicographical_compare()
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <iterator>
+
+int main() {
+    std::vector<int> vec = { 1, 2, 3, 4, 2, 5, 2, 6, 7, 2 };
+
+    // for_each
+    std::cout << "for_each: ";
+    std::for_each(vec.begin(), vec.end(), [](int x) {
+        std::cout << x << " ";
+        });
+    std::cout << "\n";
+
+    // count
+    int count2 = std::count(vec.begin(), vec.end(), 2);
+    std::cout << "count of 2: " << count2 << "\n";
+
+    // count_if
+    int countEven = std::count_if(vec.begin(), vec.end(), [](int x) { return x % 2 == 0; });
+    std::cout << "count of even numbers: " << countEven << "\n";
+
+    // min_element
+    auto minIt = std::min_element(vec.begin(), vec.end());
+    std::cout << "min_element: " << *minIt << "\n";
+
+    // max_element
+    auto maxIt = std::max_element(vec.begin(), vec.end());
+    std::cout << "max_element: " << *maxIt << "\n";
+
+    // find
+    auto find5 = std::find(vec.begin(), vec.end(), 5);
+    std::cout << "find 5: " << (find5 != vec.end() ? "Found\n" : "Not Found\n");
+
+    // find_if
+    auto find_gt5 = std::find_if(vec.begin(), vec.end(), [](int x) { return x > 5; });
+    std::cout << "first element > 5: " << *find_gt5 << "\n";
+
+    // search_n
+    auto search2x3 = std::search_n(vec.begin(), vec.end(), 3, 2); // 3 consecutive 2s
+    std::cout << "search_n (three 2s): ";
+    if (search2x3 != vec.end()) std::cout << "Found at index " << std::distance(vec.begin(), search2x3) << "\n";
+    else std::cout << "Not Found\n";
+
+    // search
+    std::vector<int> subsequence = { 2, 5, 2 };
+    auto it = std::search(vec.begin(), vec.end(), subsequence.begin(), subsequence.end());
+    std::cout << "search {2,5,2}: ";
+    if (it != vec.end()) std::cout << "Found at index " << std::distance(vec.begin(), it) << "\n";
+    else std::cout << "Not Found\n";
+
+    // find_end
+    auto lastMatch = std::find_end(vec.begin(), vec.end(), subsequence.begin(), subsequence.end());
+    std::cout << "find_end {2,5,2}: ";
+    if (lastMatch != vec.end()) std::cout << "Found at index " << std::distance(vec.begin(), lastMatch) << "\n";
+    else std::cout << "Not Found\n";
+
+    // find_first_of
+    std::vector<int> targets = { 4, 7 };
+    auto firstOf = std::find_first_of(vec.begin(), vec.end(), targets.begin(), targets.end());
+    std::cout << "find_first_of {4,7}: " << *firstOf << " at index " << std::distance(vec.begin(), firstOf) << "\n";
+
+    // adjacent_find
+    std::vector<int> vec2 = { 1, 2, 3, 3, 4 };
+    auto adj = std::adjacent_find(vec2.begin(), vec2.end());
+    std::cout << "adjacent_find: ";
+    if (adj != vec2.end()) std::cout << *adj << " and " << *(adj + 1) << " at index " << std::distance(vec2.begin(), adj) << "\n";
+    else std::cout << "No adjacent equal elements\n";
+
+    // equal
+    std::vector<int> vec3 = { 1, 2, 3, 4, 5 };
+    std::vector<int> vec4 = { 1, 2, 3, 4, 5 };
+    std::cout << "equal: " << (std::equal(vec3.begin(), vec3.end(), vec4.begin()) ? "True\n" : "False\n");
+
+    // mismatch
+    std::vector<int> vec5 = { 1, 2, 0, 4, 5 };
+    auto mismatchPair = std::mismatch(vec3.begin(), vec3.end(), vec5.begin());
+    std::cout << "mismatch: " << *mismatchPair.first << " != " << *mismatchPair.second << "\n";
+
+    // lexicographical_compare
+    std::vector<int> a = { 1, 2, 3 };
+    std::vector<int> b = { 1, 2, 4 };
+    std::cout << "lexicographical_compare: " << (std::lexicographical_compare(a.begin(), a.end(), b.begin(), b.end()) ? "True\n" : "False\n");
+
+    return 0;
+}
+
+
+
+
+
+Modifying Algorithms
+
+for_each() 
+copy() 
+copy_backward()
+transform()
+merge() 
+swap_ranges() 
+fill() 
+fill_n() 
+generate_n() 
+replace() 
+replace_if()
+replace_copy()
+replace_copy_if()
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <numeric>      // for iota
+#include <iterator>     // for back_inserter
+#include <cstdlib>      // for rand
+
+int main() {
+    std::vector<int> v1(5);
+    std::iota(v1.begin(), v1.end(), 1); // v1 = {1, 2, 3, 4, 5}
+
+    std::cout << "Original v1: ";
+    std::for_each(v1.begin(), v1.end(), [](int n) { std::cout << n << " "; });
+    std::cout << "\n";
+
+    // copy
+    std::vector<int> v2(5);
+    std::copy(v1.begin(), v1.end(), v2.begin());
+
+    // copy_backward
+    std::vector<int> v3(7, 0); // extra space at front
+    std::copy_backward(v1.begin(), v1.end(), v3.end()); // v3 = {0, 0, 1, 2, 3, 4, 5}
+
+    // transform: double each element
+    std::vector<int> v4;
+    std::transform(v1.begin(), v1.end(), std::back_inserter(v4), [](int n) { return n * 2; }); // v4 = {2, 4, 6, 8, 10}
+
+    // merge two sorted vectors
+    std::vector<int> v5 = { 1, 3, 5 };
+    std::vector<int> v6 = { 2, 4, 6 };
+    std::vector<int> merged;
+    std::merge(v5.begin(), v5.end(), v6.begin(), v6.end(), std::back_inserter(merged)); // merged = {1,2,3,4,5,6}
+
+    // swap_ranges
+    std::vector<int> v7 = { 10, 20, 30, 40, 50 };
+    std::swap_ranges(v1.begin(), v1.end(), v7.begin()); // v1 = {10,20,30,40,50}, v7 = {1,2,3,4,5}
+
+    // fill
+    std::vector<int> v8(5);
+    std::fill(v8.begin(), v8.end(), 7); // v8 = {7,7,7,7,7}
+
+    // fill_n
+    std::fill_n(v8.begin(), 3, 9); // v8 = {9,9,9,7,7}
+
+    // generate_n
+    std::vector<int> v9(5);
+    int seed = 1;
+    std::generate_n(v9.begin(), 5, [&seed]() { return seed++ * 2; }); // v9 = {2,4,6,8,10}
+
+    // replace
+    std::vector<int> v10 = { 1, 2, 2, 3, 2 };
+    std::replace(v10.begin(), v10.end(), 2, 99); // v10 = {1, 99, 99, 3, 99}
+
+    // replace_if
+    std::replace_if(v10.begin(), v10.end(), [](int n) { return n > 90; }, 42); // v10 = {1, 42, 42, 3, 42}
+
+    // replace_copy
+    std::vector<int> v11;
+    std::replace_copy(v1.begin(), v1.end(), std::back_inserter(v11), 40, 400); // replaces 40 in copy
+
+    // replace_copy_if
+    std::vector<int> v12;
+    std::replace_copy_if(v1.begin(), v1.end(), std::back_inserter(v12), [](int n) { return n > 30; }, 300);
+
+    // Print final vectors
+    std::cout << "\nv1 after swap: ";
+    for (int n : v1) std::cout << n << " ";
+
+    std::cout << "\nv3 (copy_backward): ";
+    for (int n : v3) std::cout << n << " ";
+
+    std::cout << "\nv4 (transformed): ";
+    for (int n : v4) std::cout << n << " ";
+
+    std::cout << "\nmerged: ";
+    for (int n : merged) std::cout << n << " ";
+
+    std::cout << "\nv7 after swap: ";
+    for (int n : v7) std::cout << n << " ";
+
+    std::cout << "\nv8 (fill and fill_n): ";
+    for (int n : v8) std::cout << n << " ";
+
+    std::cout << "\nv9 (generate_n): ";
+    for (int n : v9) std::cout << n << " ";
+
+    std::cout << "\nv10 (replace + replace_if): ";
+    for (int n : v10) std::cout << n << " ";
+
+    std::cout << "\nv11 (replace_copy): ";
+    for (int n : v11) std::cout << n << " ";
+
+    std::cout << "\nv12 (replace_copy_if): ";
+    for (int n : v12) std::cout << n << " ";
+
+    return 0;
+}
+
+
+
+
+
+
+Removal Algorithms
+
+remove() 
+remove_if()
+remove_copy() 
+remove_copy_if() 
+unique() 
+unique_copy()
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+bool isEven(int n) {
+    return n % 2 == 0;
+}
+
+int main() {
+    std::vector<int> data = { 1, 2, 3, 2, 4, 5, 2, 6, 6, 7 };
+
+    // 1️⃣ std::remove: removes all 2s (but doesn't shrink container)
+    std::vector<int> v1 = data;
+    auto new_end = std::remove(v1.begin(), v1.end(), 2);
+    v1.erase(new_end, v1.end());
+    std::cout << "After remove(2): ";
+    for (int i : v1) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 2️⃣ std::remove_if: removes all even numbers
+    std::vector<int> v2 = data;
+    new_end = std::remove_if(v2.begin(), v2.end(), isEven);
+    v2.erase(new_end, v2.end());
+    std::cout << "After remove_if(even): ";
+    for (int i : v2) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 3️⃣ std::remove_copy: copies all except 2s to new vector
+    std::vector<int> v3;
+    std::remove_copy(data.begin(), data.end(), std::back_inserter(v3), 2);
+    std::cout << "After remove_copy(2): ";
+    for (int i : v3) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 4️⃣ std::remove_copy_if: copies only odd numbers
+    std::vector<int> v4;
+    std::remove_copy_if(data.begin(), data.end(), std::back_inserter(v4), isEven);
+    std::cout << "After remove_copy_if(even): ";
+    for (int i : v4) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 5️⃣ std::unique: removes adjacent duplicates (note: only adjacent)
+    std::vector<int> v5 = { 1, 1, 2, 2, 2, 3, 4, 4, 5 };
+    new_end = std::unique(v5.begin(), v5.end());
+    v5.erase(new_end, v5.end());
+    std::cout << "After unique(): ";
+    for (int i : v5) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 6️⃣ std::unique_copy: copy to new vector skipping adjacent duplicates
+    std::vector<int> v6;
+    std::unique_copy(v5.begin(), v5.end(), std::back_inserter(v6));
+    std::cout << "After unique_copy(): ";
+    for (int i : v6) std::cout << i << " ";
+    std::cout << "\n";
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+Mutating Algorithms
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <random>      // for random device
+#include <ctime>       // for seeding random_shuffle
+#include <functional>  // for bind
+
+bool isOdd(int n) {
+    return n % 2 != 0;
+}
+
+int main() {
+    std::vector<int> original = { 1, 2, 3, 4, 5, 6, 7 };
+
+    // 1️ std::reverse
+    std::vector<int> v1 = original;
+    std::reverse(v1.begin(), v1.end());
+    std::cout << "reverse(): ";
+    for (int i : v1) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 2️ std::reverse_copy
+    std::vector<int> v2;
+    std::reverse_copy(original.begin(), original.end(), std::back_inserter(v2));
+    std::cout << "reverse_copy(): ";
+    for (int i : v2) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 3️ std::rotate
+    std::vector<int> v3 = original;
+    std::rotate(v3.begin(), v3.begin() + 2, v3.end());  // Left rotate by 2
+    std::cout << "rotate(): ";
+    for (int i : v3) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 4️ std::rotate_copy
+    std::vector<int> v4;
+    std::rotate_copy(original.begin(), original.begin() + 2, original.end(), std::back_inserter(v4));
+    std::cout << "rotate_copy(): ";
+    for (int i : v4) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 5️ std::prev_permutation (returns true if a previous lexicographical permutation exists)
+    std::vector<int> v5 = { 3, 2, 1 };
+    bool hasPrev = std::prev_permutation(v5.begin(), v5.end());
+    std::cout << "prev_permutation(): ";
+    for (int i : v5) std::cout << i << " ";
+    std::cout << (hasPrev ? " (has previous)" : " (was first permutation)") << "\n";
+
+    // 6 std::partition (unstable)
+    std::vector<int> v7 = original;
+    std::partition(v7.begin(), v7.end(), isOdd);
+    std::cout << "partition (odd first): ";
+    for (int i : v7) std::cout << i << " ";
+    std::cout << "\n";
+
+    // 7 std::stable_partition (preserves order)
+    std::vector<int> v8 = original;
+    std::stable_partition(v8.begin(), v8.end(), isOdd);
+    std::cout << "stable_partition (odd first, stable): ";
+    for (int i : v8) std::cout << i << " ";
+    std::cout << "\n";
+
+    return 0;
+}
+
+
+
+
+
+
+Sorting Algorithms
+
+sort() 
+stable_sort() 
+partial_sort() 
+partial_sort_copy() 
+nth_element() 
+stable_partition() 
+make_heap() 
+push_heap() 
+pop_heap() 
+sort_heap()
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+using namespace std;
+
+bool isEven(int x) {
+    return x % 2 == 0;
+}
+
+int main() {
+    vector<int> v = {7, 1, 4, 9, 2, 6, 3, 8, 5};
+
+    // sort(): regular sort (not stable)
+    vector<int> v1 = v;
+    sort(v1.begin(), v1.end());
+    cout << "sort(): ";
+    for (int x : v1) cout << x << " ";
+    cout << endl;
+
+    // stable_sort(): maintains relative order
+    vector<pair<int, char>> v2 = {{4, 'a'}, {2, 'b'}, {4, 'c'}, {1, 'd'}};
+    stable_sort(v2.begin(), v2.end());
+    cout << "stable_sort(): ";
+    for (auto [n, c] : v2) cout << "(" << n << "," << c << ") ";
+    cout << endl;
+
+    // partial_sort(): first N smallest elements sorted
+    vector<int> v3 = v;
+    partial_sort(v3.begin(), v3.begin() + 5, v3.end());
+    cout << "partial_sort() (first 5): ";
+    for (int x : v3) cout << x << " ";
+    cout << endl;
+
+    // partial_sort_copy(): copy first N sorted to another container
+    vector<int> v4(5);
+    partial_sort_copy(v.begin(), v.end(), v4.begin(), v4.end());
+    cout << "partial_sort_copy(): ";
+    for (int x : v4) cout << x << " ";
+    cout << endl;
+
+    // nth_element(): nth element at correct position, not fully sorted
+    vector<int> v5 = v;
+    nth_element(v5.begin(), v5.begin() + 4, v5.end());
+    cout << "nth_element() (5th smallest): " << v5[4] << endl;
+
+    // stable_partition(): even numbers first, maintaining order
+    vector<int> v6 = v;
+    stable_partition(v6.begin(), v6.end(), isEven);
+    cout << "stable_partition() (evens first): ";
+    for (int x : v6) cout << x << " ";
+    cout << endl;
+
+    // Heap operations
+    vector<int> v7 = v;
+    make_heap(v7.begin(), v7.end());
+    cout << "make_heap(): ";
+    for (int x : v7) cout << x << " ";
+    cout << endl;
+
+    v7.push_back(10);
+    push_heap(v7.begin(), v7.end());
+    cout << "push_heap() (added 10): ";
+    for (int x : v7) cout << x << " ";
+    cout << endl;
+
+    pop_heap(v7.begin(), v7.end());
+    int max_val = v7.back();
+    v7.pop_back();
+    cout << "pop_heap(): max = " << max_val << ", remaining: ";
+    for (int x : v7) cout << x << " ";
+    cout << endl;
+
+    sort_heap(v7.begin(), v7.end());
+    cout << "sort_heap(): ";
+    for (int x : v7) cout << x << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+Sorted Range Algorithms
+
+binary_search() 
+includes() 
+upper_bound() 
+equal_range()
+merge() 
+set_union() 
+set_intersection() 
+set_difference() 
+set_symmetric_difference() 
+inplace_merge()
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+
+using namespace std;
+
+int main() {
+    // Sorted vectors
+    vector<int> a = { 1, 2, 4, 5, 7 };
+    vector<int> b = { 2, 3, 5, 6 };
+
+    // binary_search()
+    bool found = binary_search(a.begin(), a.end(), 4);
+    cout << "binary_search(4) in a: " << (found ? "Yes" : "No") << endl;
+
+    // includes(): check if all elements of b are in a
+    bool inc = includes(a.begin(), a.end(), b.begin(), b.end());
+    cout << "includes(b in a): " << (inc ? "Yes" : "No") << endl;
+
+    // upper_bound()
+    auto ub = upper_bound(a.begin(), a.end(), 4);
+    cout << "upper_bound(4) in a: " << *ub << endl;
+
+    // equal_range()
+    vector<int> c = { 1, 2, 4, 4, 4, 5, 7 };
+    auto [low, high] = equal_range(c.begin(), c.end(), 4);
+    cout << "equal_range(4): ";
+    for (auto it = low; it != high; ++it) cout << *it << " ";
+    cout << endl;
+
+    // merge(): merge a and b into c
+    vector<int> merged;
+    merge(a.begin(), a.end(), b.begin(), b.end(), back_inserter(merged));
+    cout << "merge(a, b): ";
+    for (int x : merged) cout << x << " ";
+    cout << endl;
+
+    // set_union()
+    vector<int> sunion;
+    set_union(a.begin(), a.end(), b.begin(), b.end(), back_inserter(sunion));
+    cout << "set_union(a, b): ";
+    for (int x : sunion) cout << x << " ";
+    cout << endl;
+
+    // set_intersection()
+    vector<int> sinter;
+    set_intersection(a.begin(), a.end(), b.begin(), b.end(), back_inserter(sinter));
+    cout << "set_intersection(a, b): ";
+    for (int x : sinter) cout << x << " ";
+    cout << endl;
+
+    // set_difference()
+    vector<int> sdiff;
+    set_difference(a.begin(), a.end(), b.begin(), b.end(), back_inserter(sdiff));
+    cout << "set_difference(a - b): ";
+    for (int x : sdiff) cout << x << " ";
+    cout << endl;
+
+    // set_symmetric_difference()
+    vector<int> symdiff;
+    set_symmetric_difference(a.begin(), a.end(), b.begin(), b.end(), back_inserter(symdiff));
+    cout << "set_symmetric_difference(a, b): ";
+    for (int x : symdiff) cout << x << " ";
+    cout << endl;
+
+    // inplace_merge()
+    vector<int> d = { 1, 3, 5, 2, 4, 6 };
+    inplace_merge(d.begin(), d.begin() + 3, d.end());
+    cout << "inplace_merge(): ";
+    for (int x : d) cout << x << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+Numeric Algorithms
+
+accumulate()
+inner_product() 
+adjacent_difference() 
+partial_sum()
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <numeric> // For accumulate, inner_product, partial_sum, adjacent_difference
+
+using namespace std;
+
+int main() {
+    vector<int> v1 = { 1, 2, 3, 4, 5 };
+    vector<int> v2 = { 10, 20, 30, 40, 50 };
+
+    // accumulate()
+    int sum = accumulate(v1.begin(), v1.end(), 0);  // accumulate(v1) :1 + 2 + 3 + 4 + 5
+    cout << "accumulate (sum of v1): " << sum << endl;
+
+    // inner_product()
+    int ip = inner_product(v1.begin(), v1.end(), v2.begin(), 0); // inner_product(v1, v2):(1×10 + 2×20 + 3×30 + 4×40 + 5×50)
+    cout << "inner_product (v1 · v2): " << ip << endl;
+
+    // adjacent_difference()
+    vector<int> adj_diff(v1.size()); 
+    adjacent_difference(v1.begin(), v1.end(), adj_diff.begin()); //adjacent_difference(v1): {v1[0], v1[1]-v1[0], v1[2]-v1[1], ...}
+    cout << "adjacent_difference(v1): ";
+    for (int x : adj_diff) cout << x << " ";
+    cout << endl;
+
+    // partial_sum()
+    vector<int> p_sum(v1.size());
+    partial_sum(v1.begin(), v1.end(), p_sum.begin()); // partial_sum(v1) :{v1[0], v1[0]+v1[1], ..., sum of v1[0]..v1[n]}
+    cout << "partial_sum(v1): ";
+    for (int x : p_sum) cout << x << " ";
+    cout << endl;
+
+    return 0;
+}
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+void printVector(const std::vector<int>& v, const std::string& label) {
+    std::cout << label << ": ";
+    for (int x : v)
+        std::cout << x << " ";
+    std::cout << "\n";
+}
+
+int main() {
+    std::vector<int> A = { 1, 2, 4, 5, 6 };
+    std::vector<int> B = { 2, 3, 5, 7 };
+
+    std::vector<int> result;
+
+    // 1. Set Union
+    result.clear();
+    //Use std::back_inserter(result) to auto-expand the result vector.
+    // : automatically expands the container by appending elements to the end using push_back.
+    std::set_union(A.begin(), A.end(), B.begin(), B.end(), std::back_inserter(result));
+    printVector(result, "Set Union");
+
+    // 2. Set Intersection
+    result.clear();
+    std::set_intersection(A.begin(), A.end(), B.begin(), B.end(), std::back_inserter(result));
+    printVector(result, "Set Intersection");
+
+    // 3. Set Difference (A - B)
+    result.clear();
+    std::set_difference(A.begin(), A.end(), B.begin(), B.end(), std::back_inserter(result));
+    printVector(result, "Set Difference (A - B)");
+
+    // 4. Set Symmetric Difference
+    result.clear();
+    std::set_symmetric_difference(A.begin(), A.end(), B.begin(), B.end(), std::back_inserter(result));
+    printVector(result, "Set Symmetric Difference");
+
+    // 5. Includes (A contains B?)
+    bool includesResult = std::includes(A.begin(), A.end(), B.begin(), B.end());
+    std::cout << "A includes B? " << (includesResult ? "Yes" : "No") << "\n";
+
+    return 0;
+}
+
+
+
+
+
+In STL (Standard Template Library), exceptions are used extensively for error reporting instead of return codes.
+C++ STL containers and algorithms throw standard exceptions (from <stdexcept>, <exception>, <new>, etc.).
+Common STL Exceptions:
+std::out_of_range: Thrown when accessing elements outside container bounds.
+std::length_error: Thrown if you try to create a container larger than max_size().
+std::bad_alloc : Thrown when memory allocation fails.
+std::invalid_argument : Thrown for invalid input arguments.
+std::domain_error : Thrown when a mathematical domain error occurs.
+std::logic_error & std::runtime_error : Base classes for exception hierarchy.
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <stdexcept>
+using namespace std;
+
+int main() {
+    vector<int> v = {1, 2, 3};
+    try {
+        cout << v.at(5);   // at() throws out_of_range
+    } catch (const out_of_range &e) {
+        cout << "Caught exception: " << e.what() << endl;
+    }
+}
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    try {
+        vector<int> v;
+        v.reserve(v.max_size() + 1);  // too large
+    } catch (const length_error &e) {
+        cout << "Caught: " << e.what() << endl;
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
