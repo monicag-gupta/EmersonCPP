@@ -239,7 +239,9 @@ int main() {
 
 
 
-
+Exercise:
+Employees are to be entered in a set if their ids are equal but their names  or salary are unequal :
+Emp1(1, "John", 56) is not equal to Emp2(1, "John", 89)
 
 
 
