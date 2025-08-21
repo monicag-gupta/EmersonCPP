@@ -23,6 +23,25 @@ int main() {
 //Insert 5 employees from user input
 
 
+#include <iostream>
+#include <deque>
+using namespace std;
+int main(){
+    deque <int> deNums;
+    int i;
+    for (i = 1; i<=5; ++i )
+        deNums.push_back(i); // append elements
+    for (i = 2; i <= 5; i++)
+        deNums.push_front(i); // insert at front
+    for (i = 0; i < deNums.size(); i++)
+        cout << deNums[i] << ' ';
+    cout<<endl;
+    return 0;
+}
+
+
+
+
 
 
 
