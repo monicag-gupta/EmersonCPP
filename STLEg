@@ -155,6 +155,44 @@ int main() {
 
 
 
+#include <iostream>
+#include <set>
+#include <string>
+
+class Employee {
+    int id;
+    std::string name;
+
+public:
+    Employee(int id, std::string name) : id(id), name(std::move(name)) {}
+
+    int getId() const { return id; }
+    std::string getName() const { return name; }
+
+    // operator< defined inside class
+    bool operator<(const Employee& other) const {
+        return this->id < other.id;  // only compare id
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Employee& e) {
+        return os << "Employee{id=" << e.id << ", name=" << e.name << "}";
+    }
+};
+
+int main() {
+    std::set<Employee> employees;
+
+    employees.emplace(1, "Alice");
+    employees.emplace(2, "Bob");
+    employees.emplace(1, "Charlie"); // ignored (duplicate id)
+
+    for (const auto& e : employees) {
+        std::cout << e << "\n";
+    }
+}
+
+
+
 
 
 
