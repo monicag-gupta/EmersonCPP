@@ -219,6 +219,60 @@ int main() {
 
 
 
+#include<iostream>
+#include<string>
+using namespace std;
+template<typename T>
+T adder(T v) {
+    return v;
+}
+
+template<typename T, typename... Args>
+T adder(T first, Args... args) {
+    return first + adder(args...);
+}
+int main() {
+    long sum = adder(1, 2, 3, 8, 7);
+    cout << "sum(1, 2, 3, 8, 7) =" << sum << endl;
+    string s1 = "x", s2 = "aa", s3 = "bb", s4 = "yy";
+    int x=9, y=8;
+    string ssum = adder(s1, s2, s3, s4 );
+    cout << "string sum=" << ssum << endl;
+    return 0;
+}
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+template <class T>
+void fun(T a) {
+	cout << "The main template fun(): " << a << endl;
+}
+template<>
+void fun(int a) {
+	cout << "Specialized Template for int type: " << a << endl;
+}
+int main() {
+	fun<char>('a');
+	fun<int>(10);
+	fun<float>(10.14);
+	fun(45);
+}
+
+
+
+
+
+
+
+
+
 
 
 
