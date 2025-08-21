@@ -240,8 +240,21 @@ int main() {
 
 
 Exercise:
-Employees are to be entered in a set if their ids are equal but their names  or salary are unequal :
+Employees(id, name, sal) are to be entered in a set if their ids are equal but their names  or salary are unequal :
 Emp1(1, "John", 56) is not equal to Emp2(1, "John", 89)
+All three attributes are equal signifies that the objects are equal
+
+Earlier:
+emps.emplace(1,"John",56)
+emps.emplace(1,"Jane",100)  - not be inserted
+
+Now:
+emps.emplace(1,"John",56)
+emps.emplace(1,"Jane",100)  - both should be inserted
+emps.emplace(1,"Jane",101)  - both should be inserted
+emps.emplace(1,"Jane",100)  - not be inserted
+
+
 
 
 
