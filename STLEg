@@ -195,6 +195,47 @@ int main() {
 
 
 
+#include <iostream>
+#include <set>
+#include <string>
+
+class Employee {
+    int id;
+    std::string name;
+
+public:
+    Employee(int id, std::string name) : id(id), name(std::move(name)) {}
+
+    int getId() const { return id; }
+    std::string getName() const { return name; }
+
+    // For printing
+    friend std::ostream& operator<<(std::ostream& os, const Employee& e) {
+        return os << "Employee{id=" << e.id << ", name=" << e.name << "}";
+    }
+};
+
+// Custom comparator: compare only by id
+struct EmployeeComparator {
+    bool operator()(const Employee& lhs, const Employee& rhs) const {
+        return lhs.getId() < rhs.getId();   // uniqueness check is based only on id
+    }
+};
+
+int main() {
+    std::set<Employee, EmployeeComparator> employees;
+
+    employees.emplace(1, "Alice");
+    employees.emplace(2, "Bob");
+    employees.emplace(1, "Charlie"); // duplicate id -> won't be inserted
+
+    for (const auto& e : employees) {
+        std::cout << e << "\n";
+    }
+}
+
+
+
 
 
 
