@@ -104,3 +104,28 @@ int main() {
     cout << "\nIn main after Ptr call: x: " << x;
 
 }
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+int main() {
+    std::vector<int> nums = { 3, 1, 4, 1, 5, 9 };
+    std::sort(nums.begin(), nums.end(), [](int a, int b) {
+        return a > b;  // Sort in descending order
+        });
+    for (int n : nums) {
+        std::cout << n << " ";  // Outputs: 9 5 4 3 1 1
+    }
+    return 0;
+}
+
+
+
