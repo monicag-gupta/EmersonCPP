@@ -1,1 +1,17 @@
+#define _AFXDLL
+#include <afx.h>    // MFC core header (includes CString)
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // Initialize MFC string
+    CString msg(_T("Hello, World from MFC!"));
+
+    // Print using C++ wide output
+    wcout << (LPCTSTR)msg << endl;
+
+    return 0;
+}
+
 
