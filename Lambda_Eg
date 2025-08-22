@@ -5,3 +5,50 @@ int main() {
     print(); // Outputs: 10
 
 }
+
+
+#include <iostream>
+int main() {
+    int x = 10;
+    auto increment = [&x]() { x++; };
+    increment();
+    std::cout << x; // Outputs: 11
+
+
+}
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+void increVal(int x) {
+    x++;
+    cout << "\nIn increVal x: " << x;
+}
+void increRef(int &x) {
+    x++;
+    cout << "\nIn increRef x: " << x;
+}
+void increPtr(int* x) {
+    (*x)++;
+    cout << "\nIn increPtr x: " << *x;
+}
+int main() {
+    
+    int x = 10;
+    cout << "\nIn main before Val call: x: " << x;
+    increVal(x);
+    cout << "\nIn main after call: x: " << x;
+    cout << "\nIn main before Ref call: x: " << x;
+    increRef(x);
+    cout << "\nIn main after Ref call: x: " << x;
+    cout << "\nIn main before Ptr call: x: " << x;
+    increPtr(&x);
+    cout << "\nIn main after Ptr call: x: " << x;
+
+}
