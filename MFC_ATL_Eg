@@ -15,3 +15,35 @@ int main()
 }
 
 
+
+
+
+
+#include <windows.h>
+#include <iostream>
+using namespace std;
+int main() {
+    // Initialize COM library
+    CoInitialize(NULL);
+    // Example: Create a COM object (e.g., Excel, Word, etc.)
+    CLSID clsid;
+    CLSIDFromProgID(L"Excel.Application", &clsid);
+    IUnknown* pUnknown = NULL;
+    HRESULT hr = CoCreateInstance(clsid, NULL, CLSCTX_LOCAL_SERVER, IID_IUnknown, (void**)&pUnknown);
+    if (SUCCEEDED(hr)) {
+        cout << "Excel COM object created!" << endl;
+        pUnknown->Release();
+    }
+    else {
+        cout << "Failed to create COM object." << endl;
+    }
+    // Uninitialize COM library
+    CoUninitialize();
+    return 0;
+}
+
+
+
+
+
+
