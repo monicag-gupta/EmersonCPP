@@ -297,3 +297,29 @@ C:\Windows\SysWOW64\regsvr32.exe
 
 Re clean the project, rebuild
 
+
+
+
+
+
+
+#include <atlbase.h>
+#include <atlcom.h>
+#include "ATLProject789_i.h"
+int main() {
+    CoInitialize(NULL);
+    // Smart pointer for ICalculator
+    CComPtr<ICalculator> spCalc;
+    HRESULT hr = spCalc.CoCreateInstance(CLSID_Calculator);
+    if (SUCCEEDED(hr)) {
+        LONG result;
+        spCalc->Add(10, 20, &result);
+        printf("10 + 20 = %ld\n", result);
+        spCalc->Subtract(50, 15, &result);
+        printf("50 - 15 = %ld\n", result);
+    }
+    // No need for spCalc->Release()
+    CoUninitialize();
+    return 0;
+}
+
