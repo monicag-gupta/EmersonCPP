@@ -1,0 +1,7 @@
+#include <iostream>
+int main() {
+    int x = 10;
+    auto print = [x]() { std::cout << x << std::endl; };
+    print(); // Outputs: 10
+
+}
