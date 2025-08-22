@@ -50,3 +50,25 @@ int main() {
 
 
 
+
+
+
+Export functions with __declspec(dllexport):
+Open Solution Explorer → right-click MyLibrary → Properties (select the configuration you’ll use, e.g., Debug/x64 or All Configurations).
+C/C++ → Preprocessor → Preprocessor Definitions
+Add MYLIBRARY_EXPORTS (this causes __declspec(dllexport) to be used when building the DLL).
+Ensure C/C++ → General → Additional Include Directories includes the folder where MyLibrary.h is (usually the project folder; default is fine).
+Build the project (Build → Build MyLibrary).
+You should now see:
+MyLibrary.dll and MyLibrary.lib in the DLL project's output folder (e.g. MyLibrary\Debug\ or MyLibrary\x64\Debug\ depending on configuration/platform).
+Import them in another project with __declspec(dllimport). 
+Add Reference to DLL Project
+Right-click MainApp → Add → Reference → Tick MathLib.
+This automatically links MathLib.lib to your app.
+Add Include Path
+Right-click MainApp → Properties → Configuration Properties → C/C++ → General
+Additional Include Directories → Add path to folder containing mathlib.h.
+
+
+
+
