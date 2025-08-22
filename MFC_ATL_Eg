@@ -147,3 +147,75 @@ int main() {
 
 
 
+#include <windows.h>
+#include <iostream>
+using namespace std;
+
+HRESULT AutoWrap(int autoType, VARIANT* pvResult, IDispatch* pDisp, LPOLESTR ptName, int cArgs...) {
+    va_list marker;
+    va_start(marker, cArgs);
+
+    DISPID dispID;
+    HRESULT hr = pDisp->GetIDsOfNames(IID_NULL, &ptName, 1, LOCALE_USER_DEFAULT, &dispID);
+    if (FAILED(hr)) return hr;
+
+    DISPPARAMS dp = { NULL, NULL, 0, 0 };
+    dp.cArgs = cArgs;
+    VARIANT* pArgs = new VARIANT[cArgs];
+    for (int i = 0; i < cArgs; i++) {
+        pArgs[i] = va_arg(marker, VARIANT);
+    }
+    dp.rgvarg = pArgs;
+
+    DISPID dispidNamed = DISPID_PROPERTYPUT;
+    if (autoType & DISPATCH_PROPERTYPUT) {
+        dp.cNamedArgs = 1;
+        dp.rgdispidNamedArgs = &dispidNamed;
+    }
+
+    hr = pDisp->Invoke(dispID, IID_NULL, LOCALE_SYSTEM_DEFAULT, autoType, &dp, pvResult, NULL, NULL);
+    va_end(marker);
+    delete[] pArgs;
+    return hr;
+}
+
+int main() {
+    CoInitialize(NULL);
+
+    CLSID clsid;
+    CLSIDFromProgID(L"Excel.Application", &clsid);
+
+    IDispatch* pExcelApp = NULL;
+    HRESULT hr = CoCreateInstance(clsid, NULL, CLSCTX_LOCAL_SERVER, IID_IDispatch, (void**)&pExcelApp);
+
+    if (SUCCEEDED(hr)) {
+        cout << "Excel started!" << endl;
+
+        // Make Excel visible
+        VARIANT x;
+        x.vt = VT_BOOL;
+        x.boolVal = VARIANT_TRUE;
+        AutoWrap(DISPATCH_PROPERTYPUT, NULL, pExcelApp, (LPOLESTR)L"Visible", 1, x);
+
+        // Keep Excel open until user confirms
+        cout << "Press Enter to close Excel..." << endl;
+        cin.get();
+
+        // Release Excel
+        pExcelApp->Release();
+    }
+    else {
+        cout << "Failed to start Excel." << endl;
+    }
+    CoUninitialize();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
