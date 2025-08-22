@@ -61,6 +61,23 @@ int main() {
 #include <iostream>
 using namespace std;
 
+
+int main() {
+    
+    int x = 10, y = 20;
+    std::cout << x << ", " << y << std::endl;
+    auto print = [x, &y]() { std::cout << x << ", " << ++y << std::endl; };
+    print(); // Outputs: 10, 20
+    std::cout << x << ", " << y << std::endl;
+}
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
 void increVal(int x) {
     x++;
     cout << "\nIn increVal x: " << x;
