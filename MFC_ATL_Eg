@@ -335,3 +335,79 @@ int main() {
     return 0;
 }
 
+
+
+
+CComPtr
+CoCreateInstance(CLSID, ...) → Creates COM object
+Release() → Not usually needed (done automatically)
+p->Method() → Call methods like raw pointer
+Attach() / Detach() → Take or release ownership manually
+CComBSTR
+Append(L"string") → Append wide string
+AppendBSTR(bstr) → Append another BSTR
+Length() → Returns string length
+operator== → Compare with another string
+
+
+
+
+
+
+
+
+
+
+
+
+#include <windows.h>
+#include <atlbase.h>   // For CComPtr and CComBSTR
+#include <iostream>
+
+int main() {
+    // Initialize COM
+    HRESULT hr = CoInitialize(NULL);
+    if (FAILED(hr)) {
+        std::cout << "CoInitialize failed! HRESULT=0x" << std::hex << hr << std::endl;
+        return 1;
+    }
+
+    {
+        // Example with CComBSTR
+        CComBSTR bstr1(L"Hello");
+        CComBSTR bstr2(L" World");
+        bstr1.AppendBSTR(bstr2);  // Concatenate
+
+        std::wcout << L"CComBSTR result: " << static_cast<LPCWSTR>(bstr1) << std::endl;
+
+        // Example with CComPtr
+        // Let's create a FileSystemObject COM object (from Windows Scripting Host)
+        CLSID clsid;
+        hr = CLSIDFromProgID(L"Scripting.FileSystemObject", &clsid);
+        if (SUCCEEDED(hr)) {
+            CComPtr<IDispatch> spDisp;  // Smart COM pointer
+
+            hr = CoCreateInstance(clsid, NULL, CLSCTX_INPROC_SERVER,
+                IID_IDispatch, (void**)&spDisp);
+            if (SUCCEEDED(hr)) {
+                std::wcout << L"CComPtr example: Successfully created FileSystemObject COM object!" << std::endl;
+            }
+            else {
+                std::wcout << L"Failed to create COM object. HRESULT=0x" << std::hex << hr << std::endl;
+            }
+        }
+        else {
+            std::wcout << L"CLSIDFromProgID failed. HRESULT=0x" << std::hex << hr << std::endl;
+        }
+    }
+
+    // Cleanup COM
+    CoUninitialize();
+    return 0;
+}
+
+
+
+
+
+
