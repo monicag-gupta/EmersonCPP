@@ -7,3 +7,46 @@ Build the project (Build → Build Dll1).
 Link .dll into your main app project.
 
 
+mathlibDLL.h
+
+// mathlibDLL.h
+#pragma once
+#ifdef MATHLIB_EXPORTS
+#define MATHLIB_API __declspec(dllexport)
+#else
+#define MATHLIB_API __declspec(dllimport)
+#endif
+
+extern "C" MATHLIB_API int add(int a, int b);
+
+
+
+mathlibDLL.cpp
+
+#include "mathlibDLL.h"
+int add(int a, int b) { return a + b; }
+
+
+
+
+Build → You’ll get:
+mathlib.dll (runtime code)
+mathlib.lib (import library for linking)
+Your .exe (needs .dll at runtime)
+
+
+In Main Project:
+
+main.cpp
+
+#include <iostream>
+#include "../Dll1/mathlibDLL.h"
+int main() {
+    std::cout << add(5, 6) << "\n";
+}
+
+
+
+
+
+
