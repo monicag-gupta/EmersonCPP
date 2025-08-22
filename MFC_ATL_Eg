@@ -265,4 +265,18 @@ interface ICalculator : IDispatch {
 
 
 
+    STDMETHOD(Add)(LONG a, LONG b, LONG* result) {
+        if (!result) return E_POINTER;
+        *result = a + b;
+        return S_OK;
+    }
+
+    STDMETHOD(Subtract)(LONG a, LONG b, LONG* result) {
+        if (!result) return E_POINTER;
+        *result = a - b;
+        return S_OK;
+    }
+
+
+
 
