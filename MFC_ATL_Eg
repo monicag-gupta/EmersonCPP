@@ -256,6 +256,18 @@ int main() {
 
 
 
+
+
+
+
+In Solution Explorer, right-click your ATL project → Properties.
+Go to: 
+Configuration Properties → Linker → General.
+Set "Register Output" = Yes (/REGSVR).
+Configuration Properties → Linker → All Options.
+Set **"Per-user Redirection" = Yes (/PerUser)`.
+
+
 ATLProject1.idl:
 
 interface ICalculator : IDispatch {
