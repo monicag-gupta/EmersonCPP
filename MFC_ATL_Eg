@@ -238,6 +238,24 @@ int main() {
 
 
 
+#include <atlbase.h>   // Base ATL classes
+#include <atlstr.h>    // CString
+#include <iostream>
+using namespace std;
+
+int main() {
+    // ATL provides CString class for handling strings
+    CString msg(_T("Hello, World from ATL!"));
+
+    // Print using standard C++ cout
+    wcout << msg.GetString() << endl;
+
+    return 0;
+}
+
+
+
+
 
 
 
