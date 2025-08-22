@@ -256,6 +256,7 @@ int main() {
 
 
 
+ATLProject1.idl:
 
 interface ICalculator : IDispatch {
     [id(1)] HRESULT Add([in] LONG a, [in] LONG b, [out, retval] LONG* result);
@@ -264,7 +265,8 @@ interface ICalculator : IDispatch {
 
 
 
-
+Calculator.h:
+public:
     STDMETHOD(Add)(LONG a, LONG b, LONG* result) {
         if (!result) return E_POINTER;
         *result = a + b;
