@@ -282,3 +282,15 @@ public:
 
 
 
+
+
+
+Open Developer Command Prompt (x64) as Administrator. 
+Navigate to your ATL project’s output folder.
+Run:
+cd C:\Users\Monica\source\repos\ATLProject789\x64\Debug
+C:\Windows\System32\regsvr32.exe ATLProject789.dll
+regsvr32 ATLProject789.dll
+
+Re clean the project, rebuild
+
