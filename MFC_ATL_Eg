@@ -292,5 +292,8 @@ cd C:\Users\Monica\source\repos\ATLProject789\x64\Debug
 C:\Windows\System32\regsvr32.exe ATLProject789.dll
 regsvr32 ATLProject789.dll
 
+
+C:\Windows\SysWOW64\regsvr32.exe
+
 Re clean the project, rebuild
 
