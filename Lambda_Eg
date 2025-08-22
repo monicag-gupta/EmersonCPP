@@ -129,3 +129,15 @@ int main() {
 
 
 
+
+
+#include <iostream>
+#include <vector>
+int main() {
+    std::vector<int> vec1 = {1, 2, 3, 4};
+    std::vector<int> vec2 = std::move(vec1);  // Move vec1 to vec2
+    std::cout << "Size of vec1: " << vec1.size() << std::endl;  // Outputs: 0 (vec1 is now empty)
+    std::cout << "Size of vec2: " << vec2.size() << std::endl;  // Outputs: 4
+    return 0;
+}
+
