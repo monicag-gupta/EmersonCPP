@@ -311,6 +311,12 @@ Re clean the project, rebuild
 
 
 
+Create a console Project
+->Add ref: ATLProject1
+->Add Existing Item -> ATLProject1_i.c  ( For Me: ATLProject789_i.c)
+->Add in Properties-> Configuration Settings -> V C++ directories -> Edit
+    Add C:\Users\Monica\source\repos\ATLProject789\x64\Debug (where the .dll, .lib lies)
+    Add C:\Users\Monica\source\repos\ATLProject789\ATLProject789\x64\Debug (Where other libs lie)
 
 
 
@@ -405,6 +411,11 @@ int main() {
     CoUninitialize();
     return 0;
 }
+
+
+
+
+
 
 
 
