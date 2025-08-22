@@ -131,6 +131,49 @@ int main() {
 
 
 
+#include <concepts>
+#include <iostream>
+//template<typename T>  //without concepts
+//T add(T a, T b) {
+//    return a + b; // error only happens if T doesn't support +
+//}
+template<std::integral T> // concept: only integers allowed
+T add(T a, T b) {
+    return a + b;
+}
+int main() {
+    std::cout << add(2, 3) << "\n";   // works
+     //std::cout << add(2.5, 3.5) << "\n"; // compile-time error: doesn't satisfy integral
+}
+
+
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    auto x = 10;         // deduced as int
+    auto y = 3.14;       // deduced as double
+    auto z = "Hello";    // deduced as const char*
+
+    vector<int> v = {1, 2, 3, 4, 5};
+
+    // use auto in loops
+    for (auto i : v) {
+        cout << i << " ";  // i deduced as int
+    }
+
+    return 0;
+}
+
+
+
+
+
+
 
 
 
