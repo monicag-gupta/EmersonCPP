@@ -257,6 +257,12 @@ int main() {
 
 
 
+interface ICalculator : IDispatch {
+    [id(1)] HRESULT Add([in] LONG a, [in] LONG b, [out, retval] LONG* result);
+    [id(2)] HRESULT Subtract([in] LONG a, [in] LONG b, [out, retval] LONG* result);
+};
+
+
 
 
 
