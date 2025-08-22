@@ -1,3 +1,26 @@
+Create a menu-driven Employee Management System in C++ that allows you to:
+OOP: Employee (base), Manager (derived, overrides display()).
+Pointers: store polymorphic objects via std::shared_ptr<Employee>.
+Smart pointers: std::shared_ptr, easy to add std::unique_ptr in factory.
+Boost:
+Regex for validating names/IDs.
+STL: vector, algorithms (sort, find_if, remove_if, accumulate).
+Templates:
+Generic Repository constrained with SFINAE: only types derived from Employee.
+Generic utility functions (range printing, payroll).
+Functors:
+Comparators / predicates: BySalaryDesc, ByNameAsc, IdEquals.
+SFINAE + type_traits:
+Constrain templates to std::is_base_of<Employee, T>.
+Detection of getSalary() via void_t trait for payroll utility.
+Error checking if non-employee is inserted->constexpr
+Accumulate all salary to provide expense amount for the company.
+
+
+
+
+
+
 I. Create a menu-driven Employee Management System in C++ that allows you to:
 Add Employees (Name, ID, Salary).
 Display All Employees.
